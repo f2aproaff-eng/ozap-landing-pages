@@ -134,11 +134,13 @@ export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: 
 export function Hero({
   headline,
   sub,
-  children,
+  cta,
+  visual,
 }: {
   headline: string;
   sub: string;
-  children?: ReactNode;
+  cta?: ReactNode;
+  visual?: ReactNode;
 }) {
   return (
     <section className="bg-gradient-to-b from-brand-deep via-brand to-background">
@@ -148,9 +150,9 @@ export function Hero({
             {headline}
           </h1>
           <p className="mt-5 text-lg text-primary-foreground/85">{sub}</p>
-          <div className="mt-8 flex justify-start">{children}</div>
+          <div className="mt-8 flex justify-start">{cta}</div>
         </div>
-        <div>{/* visual slot */}</div>
+        <div>{visual}</div>
       </div>
     </section>
   );
