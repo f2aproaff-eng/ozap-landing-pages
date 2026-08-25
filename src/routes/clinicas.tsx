@@ -6,6 +6,8 @@ import { CTA } from "@/components/site/CTA";
 import {
   Card,
   ChatDemo,
+  FaqSection,
+  FeatureGrid,
   Hero,
   PainCard,
   PriceCard,
@@ -13,10 +15,11 @@ import {
   SectionTitle,
   WinCard,
 } from "@/components/site/sections";
+import { FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Agendamento Automático com IA | oZap - Clínicas";
+const title = "Agendamento Automático com IA | ZapBook - Clínicas";
 const description =
-  "Múltiplos profissionais e agendas confusas? A oZap direciona cada paciente ao especialista certo, evita duplicidade e reduz no-show.";
+  "Múltiplos profissionais e agendas confusas? A ZapBook direciona cada paciente ao especialista certo, evita duplicidade e reduz no-show.";
 
 export const Route = createFileRoute("/clinicas")({
   head: () => ({
@@ -39,14 +42,43 @@ const cases = [
   { t: "Caso 4", d: "Policlínica com mais de 3 profissionais" },
 ];
 
+const featured = FEATURES.filter((f) =>
+  [
+    "Agentes ilimitados",
+    "Pipeline visual de leads",
+    "Integrações prontas",
+    "Múltiplos números",
+    "Você sempre no controle",
+    "Configuração em minutos",
+  ].includes(f.title),
+);
+
+const clinicasFaqs = [
+  {
+    q: "Como o agente sabe direcionar para o especialista certo?",
+    a: "Você define, na configuração, os serviços de cada profissional. O agente identifica o assunto na mensagem e já oferece os horários daquele especialista específico.",
+  },
+  {
+    q: "Dá para ter uma agenda por profissional?",
+    a: "Sim. Cada especialista tem sua própria agenda sincronizada, então o sistema nunca marca dois pacientes no mesmo horário com o mesmo profissional.",
+  },
+  ...FAQS.filter((f) =>
+    [
+      "Preciso saber programar ou mexer em API?",
+      "Existe fidelidade ou multa de cancelamento?",
+    ].includes(f.q),
+  ),
+];
+
 function ClinicasPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-1">
         <Hero
+          eyebrow="Para clínicas com 2+ profissionais"
           headline="Chega de Confusão em Agendamentos"
-          sub="Múltiplos profissionais, múltiplas mensagens. Agora tudo organizado."
+          sub="Múltiplos profissionais, múltiplas mensagens. Agora tudo organizado num único agente de IA."
           cta={<CTA helper="Veja o painel de agendamentos ao vivo." />}
           visual={
             <ChatDemo
@@ -58,6 +90,12 @@ function ClinicasPage() {
               ]}
             />
           }
+          stats={[
+            { value: "2+", label: "Profissionais organizados" },
+            { value: "0", label: "Agendamentos duplicados" },
+            { value: "-40%", label: "Menos no-show*" },
+            { value: "1", label: "Painel para tudo" },
+          ]}
         />
 
         <Section alt>
@@ -84,7 +122,9 @@ function ClinicasPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {cases.map((c) => (
               <Card key={c.t}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-brand">{c.t}</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-success">
+                  {c.t}
+                </p>
                 <p className="mt-3 font-medium text-card-foreground">{c.d}</p>
               </Card>
             ))}
@@ -92,8 +132,18 @@ function ClinicasPage() {
         </Section>
 
         <Section>
+          <SectionTitle
+            eyebrow="Funcionalidades incluídas"
+            title="Feito para operações com mais de um profissional"
+            subtitle="Os mesmos recursos da plataforma ZapBook, aplicados à rotina de uma clínica."
+          />
+          <FeatureGrid features={featured} />
+        </Section>
+
+        <Section alt>
           <SectionTitle title="Investimento" subtitle="Valor conforme número de especialidades." />
           <PriceCard
+            highlight
             setup="R$ 2.500"
             monthly="R$ 400-500/mês"
             includes={[
@@ -101,7 +151,13 @@ function ClinicasPage() {
               "Múltiplas agendas sincronizadas",
               "Suporte contínuo",
             ]}
+            note="*Redução de faltas estimada com lembrete automático 24h antes da consulta."
           />
+        </Section>
+
+        <Section>
+          <SectionTitle eyebrow="Dúvidas comuns" title="Perguntas frequentes" />
+          <FaqSection items={clinicasFaqs} />
         </Section>
 
         <Section alt>
