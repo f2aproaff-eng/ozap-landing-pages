@@ -144,8 +144,8 @@ function ClinicasPage() {
           <SectionTitle title="Investimento" subtitle="Valor conforme número de especialidades." />
           <PriceCard
             highlight
-            setup="R$ 2.500"
-            monthly="R$ 400-500/mês"
+            setup="R$ 1.200"
+            monthly="R$ 400/mês"
             includes={[
               "Configuração por especialidade",
               "Múltiplas agendas sincronizadas",
