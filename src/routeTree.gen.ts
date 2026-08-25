@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdvogadosRouteImport } from './routes/advogados'
+import { Route as ClinicasRouteImport } from './routes/clinicas'
+import { Route as ConsultorioRouteImport } from './routes/consultorio'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdvogadosRoute = AdvogadosRouteImport.update({
+  id: '/advogados',
+  path: '/advogados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ClinicasRoute = ClinicasRouteImport.update({
+  id: '/clinicas',
+  path: '/clinicas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsultorioRoute = ConsultorioRouteImport.update({
+  id: '/consultorio',
+  path: '/consultorio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/advogados': typeof AdvogadosRoute
+  '/clinicas': typeof ClinicasRoute
+  '/consultorio': typeof ConsultorioRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/advogados': typeof AdvogadosRoute
+  '/clinicas': typeof ClinicasRoute
+  '/consultorio': typeof ConsultorioRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/advogados': typeof AdvogadosRoute
+  '/clinicas': typeof ClinicasRoute
+  '/consultorio': typeof ConsultorioRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/advogados' | '/clinicas' | '/consultorio'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/advogados' | '/clinicas' | '/consultorio'
+  id: '__root__' | '/' | '/advogados' | '/clinicas' | '/consultorio'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdvogadosRoute: typeof AdvogadosRoute
+  ClinicasRoute: typeof ClinicasRoute
+  ConsultorioRoute: typeof ConsultorioRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/advogados': {
+      id: '/advogados'
+      path: '/advogados'
+      fullPath: '/advogados'
+      preLoaderRoute: typeof AdvogadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/clinicas': {
+      id: '/clinicas'
+      path: '/clinicas'
+      fullPath: '/clinicas'
+      preLoaderRoute: typeof ClinicasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consultorio': {
+      id: '/consultorio'
+      path: '/consultorio'
+      fullPath: '/consultorio'
+      preLoaderRoute: typeof ConsultorioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdvogadosRoute: AdvogadosRoute,
+  ClinicasRoute: ClinicasRoute,
+  ConsultorioRoute: ConsultorioRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
