@@ -1,134 +1,168 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createFileRoute } from "@tanstack/react-router";
+
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { CTA } from "@/components/site/CTA";
 import {
-  Outlet,
-  Link,
-  createRootRouteWithContext,
-  useRouter,
-  HeadContent,
-  Scripts,
-} from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+  ChatDemo,
+  FaqSection,
+  FeatureGrid,
+  Hero,
+  PainCard,
+  PriceCard,
+  Section,
+  SectionTitle,
+  StepCard,
+  WinCard,
+} from "@/components/site/sections";
+import { FAQS, FEATURES } from "@/components/site/data";
 
-import appCss from "../styles.css?url";
-import { reportLovableError } from "../lib/lovable-error-reporting";
+const title = "Triagem Automática com IA | ZapBook - Advogados";
+const description =
+  "Triagem de clientes consome 30min por dia? A IA da ZapBook qualifica leads no WhatsApp, resume por e-mail e libera você para fechar contratos.";
 
-function NotFoundComponent() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
-  console.error(error);
-  const router = useRouter();
-  useEffect(() => {
-    reportLovableError(error, { boundary: "tanstack_root_error_component" });
-  }, [error]);
-
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
-          <button
-            onClick={() => {
-              router.invalidate();
-              reset();
-            }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Try again
-          </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createFileRoute("/advogados")({
   head: () => ({
     meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ZapBook | Agente de IA para WhatsApp" },
-      {
-        name: "description",
-        content:
-          "ZapBook instala um agente de IA no seu WhatsApp: responde 24/7, agenda sozinho e qualifica leads para consultórios, clínicas e advogados.",
-      },
-      { name: "author", content: "ZapBook" },
-      { property: "og:title", content: "ZapBook | Agente de IA para WhatsApp" },
-      {
-        property: "og:description",
-        content: "Seu WhatsApp atendendo, agendando e qualificando sozinho, 24 horas por dia.",
-      },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@zapbook" },
-      { name: "theme-color", content: "#171b2e" },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
-  shellComponent: RootShell,
-  component: RootComponent,
-  notFoundComponent: NotFoundComponent,
-  errorComponent: ErrorComponent,
+  component: AdvogadosPage,
 });
 
-function RootShell({ children }: { children: ReactNode }) {
-  return (
-    <html lang="pt-BR">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
+const featured = FEATURES.filter((f) =>
+  [
+    "IA própria, sem custo extra",
+    "Pipeline visual de leads",
+    "Integrações prontas",
+    "Entende áudio e imagem",
+    "Você sempre no controle",
+    "Configuração em minutos",
+  ].includes(f.title),
+);
 
-function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
+const advogadosFaqs = [
+  {
+    q: "O resumo do lead chega mesmo por e-mail?",
+    a: "Sim. Assim que a IA termina a triagem, um resumo com tipo de caso, urgência e dados do cliente cai direto no seu e-mail ou no painel — pronto para você decidir o próximo passo.",
+  },
+  {
+    q: "A triagem substitui a consulta jurídica?",
+    a: "Não. O agente só organiza a informação inicial (tipo de caso, urgência, dados de contato) para você chegar à conversa já sabendo o que o cliente precisa — a análise jurídica continua sendo sua.",
+  },
+  ...FAQS.filter((f) =>
+    [
+      "Posso assumir a conversa manualmente quando quiser?",
+      "Existe fidelidade ou multa de cancelamento?",
+    ].includes(f.q),
+  ),
+];
 
+function AdvogadosPage() {
   return (
-    <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
-    </QueryClientProvider>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+        <Hero
+          eyebrow="Para escritórios de advocacia"
+          headline="Você Gasta 30min/dia em Triagem de Cliente"
+          sub="Automatize a qualificação inicial de leads no WhatsApp. Foque em fechar, não em triar."
+          cta={<CTA helper="Leads qualificados direto no seu e-mail." />}
+          visual={
+            <ChatDemo
+              messages={[
+                { from: "user", text: "Preciso de ajuda com divórcio" },
+                { from: "ai", text: "Entendi. É consensual? Qual a urgência?" },
+                { from: "user", text: "Consensual, urgência média" },
+                { from: "ai", text: "Resumo enviado ao escritório ✅ Retornam em até 4h." },
+              ]}
+            />
+          }
+          stats={[
+            { value: "30min → 2min", label: "Tempo de triagem" },
+            { value: "24/7", label: "Primeiro contato" },
+            { value: "100+", label: "Contatos/dia no seu ritmo" },
+            { value: "< 10 min", label: "Para colocar no ar" },
+          ]}
+        />
+
+        <Section alt>
+          <SectionTitle eyebrow="O problema" title="Triagem manual custa caro" />
+          <div className="grid gap-6 md:grid-cols-3">
+            <PainCard text="Cliente liga ou manda WhatsApp e você gasta 30min pra entender a demanda" />
+            <PainCard text="Fila de espera cresce e o cliente fica na mão" />
+            <PainCard text="Informações espalhadas entre mensagem, e-mail e ligação" />
+          </div>
+        </Section>
+
+        <Section>
+          <SectionTitle eyebrow="A solução" title="Triagem automática e organizada" />
+          <div className="grid gap-6 sm:grid-cols-2">
+            <WinCard text="Agente coleta info automaticamente (tipo de caso, urgência, cliente)" />
+            <WinCard text="Resume tudo em um e-mail para o seu painel" />
+            <WinCard text="Cliente sabe os próximos passos (reduz ansiedade)" />
+            <WinCard text="Você foca em fechar, não em triagem" />
+          </div>
+        </Section>
+
+        <Section alt>
+          <SectionTitle title="Fluxo do agente" />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <StepCard n={1} text='Cliente envia: "Preciso de ajuda com divórcio"' />
+            <StepCard n={2} text="IA pergunta tipo de caso, urgência e dados pessoais" />
+            <StepCard n={3} text='IA resume e envia e-mail: "Lead: divórcio, urgência média"' />
+            <StepCard n={4} text="Você contacta com a proposta" />
+          </div>
+        </Section>
+
+        <Section>
+          <SectionTitle title="Benefícios" />
+          <div className="grid gap-6 sm:grid-cols-2">
+            <WinCard text="Reduz o tempo de triagem: 30min → 2min" />
+            <WinCard text="Qualifica leads: só recebe os sérios" />
+            <WinCard text="Melhora a experiência: cliente atendido 24/7" />
+            <WinCard text="Escalável: funciona com 100 contatos por dia" />
+          </div>
+        </Section>
+
+        <Section alt>
+          <SectionTitle
+            eyebrow="Funcionalidades incluídas"
+            title="A mesma plataforma, pensada para triagem jurídica"
+          />
+          <FeatureGrid features={featured} />
+        </Section>
+
+        <Section>
+          <SectionTitle title="Investimento" />
+          <PriceCard
+            highlight
+            setup="R$ 3.000"
+            monthly="R$ 500/mês"
+            includes={[
+              "Triagem automática de leads",
+              "Integração com Gmail",
+              "Relatórios e suporte",
+            ]}
+          />
+        </Section>
+
+        <Section alt>
+          <SectionTitle eyebrow="Dúvidas comuns" title="Perguntas frequentes" />
+          <FaqSection items={advogadosFaqs} />
+        </Section>
+
+        <Section>
+          <SectionTitle title="Pare de perder tempo com triagem" />
+          <CTA />
+        </Section>
+      </main>
+      <Footer />
+    </div>
   );
 }
