@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { FAQS, FEATURES, IMOBILIARIA_CHAT } from "@/components/site/data";
 
-const title = "Venda Imóvel com Agente de IA | ZapBook";
+const title = "Venda Imóvel com Agente de IA | ZapPulse";
 const description = "Qualifica lead, agenda visita e reduz tempo de venda — direto no WhatsApp.";
 
 export const Route = createFileRoute("/imobiliaria")({
@@ -113,7 +113,7 @@ function ImobiliariaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da imobiliária."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da imobiliária."
           />
           <FeatureGrid features={featured} />
         </Section>

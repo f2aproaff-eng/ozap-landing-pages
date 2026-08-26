@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { ECOMMERCE_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "E-commerce com Suporte IA 24/7 | ZapBook";
+const title = "E-commerce com Suporte IA 24/7 | ZapPulse";
 const description =
   "Agente que responde dúvida de compra, processa pedido e reduz carrinho abandonado.";
 
@@ -114,7 +114,7 @@ function EcommercePage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia do e-commerce."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia do e-commerce."
           />
           <FeatureGrid features={featured} />
         </Section>

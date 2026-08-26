@@ -17,9 +17,9 @@ import {
 } from "@/components/site/sections";
 import { CLINICAS_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Agendamento Automático com IA | ZapBook - Clínicas";
+const title = "Agendamento Automático com IA | ZapPulse - Clínicas";
 const description =
-  "Múltiplos profissionais e agendas confusas? A ZapBook direciona cada paciente ao especialista certo, evita duplicidade e reduz no-show.";
+  "Múltiplos profissionais e agendas confusas? A ZapPulse direciona cada paciente ao especialista certo, evita duplicidade e reduz no-show.";
 
 export const Route = createFileRoute("/clinicas")({
   head: () => ({
@@ -124,7 +124,7 @@ function ClinicasPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="Feito para operações com mais de um profissional"
-            subtitle="Os mesmos recursos da plataforma ZapBook, aplicados à rotina de uma clínica."
+            subtitle="Os mesmos recursos da plataforma ZapPulse, aplicados à rotina de uma clínica."
           />
           <FeatureGrid features={featured} />
         </Section>

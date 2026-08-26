@@ -11,7 +11,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export const WHATSAPP_NUMBER = "5553991774147";
+export const WHATSAPP_NUMBER = "5511914310221";
 export const WHATSAPP_DEMO = `https://wa.me/${WHATSAPP_NUMBER}`;
 export const WHATSAPP_CTA = `https://wa.me/${WHATSAPP_NUMBER}?text=Oi!%20Gostaria%20de%20uma%20demo`;
 
@@ -100,6 +100,45 @@ export const FAQS: FaqItem[] = [
 ];
 
 export type ChatMsg = { from: "user" | "ai"; text: string; time: string };
+
+/**
+ * Mensagens exibidas quando o visitante clica em "Desativar IA" no simulador.
+ * Mesma sequência em todas as páginas — mostra o cliente insistindo sem
+ * nenhuma resposta, pra deixar claro o custo de não ter o agente ligado.
+ */
+export const IA_OFF_CHAT: ChatMsg[] = [
+  { from: "user", text: "Olá? Está funcionando?", time: "09:14" },
+  { from: "user", text: "Tem alguém para me atender?", time: "09:31" },
+  { from: "user", text: "Alguém por aí?", time: "10:05" },
+];
+
+/** Conversa genérica usada na home — não é de um segmento específico. */
+export const GENERAL_CHAT: ChatMsg[] = [
+  { from: "user", text: "Oi, boa tarde!", time: "14:10" },
+  { from: "ai", text: "Boa tarde! Sou o agente de atendimento. 😊", time: "14:10" },
+  { from: "ai", text: "Como posso te ajudar hoje?", time: "14:10" },
+  { from: "user", text: "Queria saber se tem horário essa semana.", time: "14:11" },
+  { from: "ai", text: "Temos sim! Qual dia funciona melhor pra você?", time: "14:11" },
+  { from: "user", text: "Pode ser quinta?", time: "14:11" },
+  {
+    from: "ai",
+    text: "Quinta-feira temos horários às **14:00** e **16:30**. Qual prefere?",
+    time: "14:12",
+  },
+  { from: "user", text: "14h pra mim está ótimo", time: "14:12" },
+  { from: "ai", text: "Perfeito! Qual é o seu nome?", time: "14:12" },
+  { from: "user", text: "Camila Ribeiro", time: "14:13" },
+  { from: "ai", text: "Prazer, Camila!", time: "14:13" },
+  { from: "ai", text: "Qual seu e-mail para enviar a confirmação?", time: "14:13" },
+  { from: "user", text: "camilaribeiro@gmail.com", time: "14:13" },
+  {
+    from: "ai",
+    text: "Confirmando: 📅 **Quinta-feira** ⏰ **14:00** 👤 **Camila Ribeiro**. Posso agendar?",
+    time: "14:14",
+  },
+  { from: "user", text: "Pode confirmar, obrigada!", time: "14:14" },
+  { from: "ai", text: "Agendado! Qualquer coisa, é só chamar por aqui. 🤍", time: "14:14" },
+];
 
 /** Conversa real capturada no simulador do agente — consultório (cardiologista). */
 export const CONSULTORIO_CHAT: ChatMsg[] = [

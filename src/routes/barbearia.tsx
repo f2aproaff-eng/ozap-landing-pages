@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { BARBEARIA_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Barbearia com Agendamento Automático | ZapBook";
+const title = "Barbearia com Agendamento Automático | ZapPulse";
 const description =
   "Agente de IA que marca horário, evita furo de agenda e responde 24/7 no WhatsApp da barbearia.";
 
@@ -114,7 +114,7 @@ function BarbeariaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da barbearia."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da barbearia."
           />
           <FeatureGrid features={featured} />
         </Section>

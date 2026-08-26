@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { ESCOLA_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Escola com Matrícula Automática | ZapBook";
+const title = "Escola com Matrícula Automática | ZapPulse";
 const description =
   "IA responde dúvida de pai, agenda visita e qualifica candidato — reduz desistência.";
 
@@ -114,7 +114,7 @@ function EscolaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da escola."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da escola."
           />
           <FeatureGrid features={featured} />
         </Section>

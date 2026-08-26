@@ -17,9 +17,9 @@ import {
 } from "@/components/site/sections";
 import { ADVOGADOS_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Triagem Automática com IA | ZapBook - Advogados";
+const title = "Triagem Automática com IA | ZapPulse - Advogados";
 const description =
-  "Triagem de clientes consome 30min por dia? A IA da ZapBook qualifica leads no WhatsApp, resume por e-mail e libera você para fechar contratos.";
+  "Triagem de clientes consome 30min por dia? A IA da ZapPulse qualifica leads no WhatsApp, resume por e-mail e libera você para fechar contratos.";
 
 export const Route = createFileRoute("/advogados")({
   head: () => ({

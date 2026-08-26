@@ -17,9 +17,9 @@ import {
 } from "@/components/site/sections";
 import { CONSULTORIO_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Agendamento Automático com IA | ZapBook - Consultórios";
+const title = "Agendamento Automático com IA | ZapPulse - Consultórios";
 const description =
-  "Seu consultório perde agendamentos no WhatsApp? O agente de IA da ZapBook responde 24/7, agenda no Google Calendar e reduz no-show.";
+  "Seu consultório perde agendamentos no WhatsApp? O agente de IA da ZapPulse responde 24/7, agenda no Google Calendar e reduz no-show.";
 
 export const Route = createFileRoute("/consultorio")({
   head: () => ({
@@ -115,7 +115,7 @@ function ConsultorioPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia do consultório."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia do consultório."
           />
           <FeatureGrid features={featured} />
         </Section>

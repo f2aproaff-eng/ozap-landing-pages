@@ -9,13 +9,13 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
         <div>
           <p className="font-serif text-xl italic text-foreground">
-            Zap<span className="text-brand">Book</span>
+            Zap<span className="text-brand">Pulse</span>
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Agendamento e triagem automáticos com IA no WhatsApp.
           </p>
           <p className="mt-4 font-mono text-xs tracking-[0.02em] text-muted-foreground">
-            © 2026 ZapBook
+            © 2026 ZapPulse
           </p>
         </div>
 
@@ -53,8 +53,8 @@ export function Footer() {
           </p>
           <ul className="mt-3 space-y-2 text-foreground">
             <li>
-              <a href="mailto:contato@zapbook.com.br" className="hover:text-brand">
-                contato@zapbook.com.br
+              <a href="mailto:f2apro.aff@gmail.com" className="hover:text-brand">
+                f2apro.aff@gmail.com
               </a>
             </li>
             <li>

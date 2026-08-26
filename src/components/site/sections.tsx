@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { ChatMsg, FaqItem } from "./data";
+import { IA_OFF_CHAT, type ChatMsg, type FaqItem } from "./data";
 
 export function Section({
   children,
@@ -263,7 +263,7 @@ export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: 
     <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
       <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
         <p className="font-mono text-[11px] tracking-[0.04em] text-muted-foreground">
-          WhatsApp · Agente ZapBook
+          WhatsApp · Agente ZapPulse
         </p>
         <span className="flex items-center gap-1 font-mono text-[10px] text-brand">
           <span className="size-1.5 rounded-full bg-brand" /> online
@@ -292,7 +292,7 @@ export function ChatGif({ src, alt }: { src: string; alt: string }) {
     <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
       <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
         <p className="font-mono text-[11px] tracking-[0.04em] text-muted-foreground">
-          WhatsApp · Agente ZapBook
+          WhatsApp · Agente ZapPulse
         </p>
         <span className="flex items-center gap-1 font-mono text-[10px] text-brand">
           <span className="size-1.5 rounded-full bg-brand" /> online
@@ -323,9 +323,11 @@ function renderBold(text: string) {
 export function ChatSim({ messages }: { messages: ChatMsg[] }) {
   const [visible, setVisible] = useState(0);
   const [typing, setTyping] = useState(false);
+  const [iaOn, setIaOn] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!iaOn) return;
     let cancelled = false;
     let timer: ReturnType<typeof setTimeout>;
 
@@ -355,27 +357,53 @@ export function ChatSim({ messages }: { messages: ChatMsg[] }) {
       cancelled = true;
       clearTimeout(timer);
     };
-  }, [messages]);
+  }, [messages, iaOn]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [visible, typing]);
+  }, [visible, typing, iaOn]);
 
-  const shown = messages.slice(0, visible);
-  const next = messages[visible];
+  function toggleIa() {
+    setIaOn((prev) => !prev);
+    setVisible(0);
+    setTyping(false);
+  }
+
+  const shown = iaOn ? messages.slice(0, visible) : IA_OFF_CHAT;
+  const next = iaOn ? messages[visible] : undefined;
 
   return (
     <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
       <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
-        <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-[0.04em] text-brand">
-          <span className="size-1.5 animate-pulse rounded-full bg-brand" /> IA Ativa
+        <span
+          className={cn(
+            "flex items-center gap-1.5 font-mono text-[11px] tracking-[0.04em]",
+            iaOn ? "text-brand" : "text-muted-foreground",
+          )}
+        >
+          <span
+            className={cn(
+              "size-1.5 rounded-full",
+              iaOn ? "animate-pulse bg-brand" : "bg-muted-foreground/50",
+            )}
+          />
+          {iaOn ? "IA Ativa" : "IA Desativada"}
         </span>
-        <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
-          Desativar IA
-        </span>
+        <button
+          type="button"
+          onClick={toggleIa}
+          className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground transition-colors hover:border-brand/50 hover:text-brand"
+        >
+          {iaOn ? "Desativar IA" : "Ativar IA"}
+        </button>
       </div>
       <div ref={scrollRef} className="h-[340px] space-y-2 overflow-y-auto pr-1">
+        {!iaOn && (
+          <p className="mb-2 rounded-lg border border-dashed border-border bg-background/40 px-3 py-2 text-center font-mono text-[10px] leading-relaxed text-muted-foreground">
+            Sem IA, ninguém responde — o cliente insiste e desiste.
+          </p>
+        )}
         {shown.map((m, i) => (
           <div key={i} className={m.from === "user" ? "flex justify-end" : "flex justify-start"}>
             <div
@@ -438,7 +466,7 @@ export function Hero({
   cta,
   visual,
   stats,
-  wordmark = "ZapBook",
+  wordmark = "ZapPulse",
   title,
   subtitle,
   ctaText,

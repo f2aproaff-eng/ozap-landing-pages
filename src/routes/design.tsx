@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { DESIGN_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Agência de Design com Briefing Automático | ZapBook";
+const title = "Agência de Design com Briefing Automático | ZapPulse";
 const description =
   "IA tira briefing completo, qualifica projeto e agenda consultoria — sem retrabalho.";
 
@@ -114,7 +114,7 @@ function DesignPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da agência."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da agência."
           />
           <FeatureGrid features={featured} />
         </Section>

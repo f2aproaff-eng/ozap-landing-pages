@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { FAQS, FEATURES, LOJA_CHAT } from "@/components/site/data";
 
-const title = "Loja com Atendimento IA 24/7 | ZapBook";
+const title = "Loja com Atendimento IA 24/7 | ZapPulse";
 const description =
   "Agente que vende, tira dúvida de estoque e atende 24/7 — sem barreira de entrada.";
 
@@ -114,7 +114,7 @@ function LojaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da loja."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da loja."
           />
           <FeatureGrid features={featured} />
         </Section>

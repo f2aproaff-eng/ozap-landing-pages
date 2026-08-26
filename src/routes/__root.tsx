@@ -77,21 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ZapBook | Agente de IA para WhatsApp" },
+      { title: "ZapPulse | Agente de IA para WhatsApp" },
       {
         name: "description",
         content:
-          "ZapBook instala um agente de IA no seu WhatsApp: responde 24/7, agenda sozinho e qualifica leads para consultórios, clínicas e advogados.",
+          "ZapPulse instala um agente de IA no seu WhatsApp: responde 24/7, agenda sozinho e qualifica leads para consultórios, clínicas e advogados.",
       },
-      { name: "author", content: "ZapBook" },
-      { property: "og:title", content: "ZapBook | Agente de IA para WhatsApp" },
+      { name: "author", content: "ZapPulse" },
+      { property: "og:title", content: "ZapPulse | Agente de IA para WhatsApp" },
       {
         property: "og:description",
         content: "Seu WhatsApp atendendo, agendando e qualificando sozinho, 24 horas por dia.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@zapbook" },
+      { name: "twitter:site", content: "@zappulse" },
       { name: "theme-color", content: "#000000" },
     ],
     links: [

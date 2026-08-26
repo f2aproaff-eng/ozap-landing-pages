@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
-  ChatDemo,
+  ChatSim,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -12,11 +12,11 @@ import {
   SectionTitle,
   StepCard,
 } from "@/components/site/sections";
-import { FAQS, FEATURES } from "@/components/site/data";
+import { FAQS, FEATURES, GENERAL_CHAT } from "@/components/site/data";
 
-const title = "ZapBook | Agendamento e Triagem Automáticos com IA no WhatsApp";
+const title = "ZapPulse | Agendamento e Triagem Automáticos com IA no WhatsApp";
 const description =
-  "ZapBook instala um agente de IA no seu WhatsApp: responde 24/7, agenda no Google Calendar e qualifica leads para consultórios, clínicas e advogados.";
+  "ZapPulse instala um agente de IA no seu WhatsApp: responde 24/7, agenda no Google Calendar e qualifica leads para consultórios, clínicas e advogados.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -117,16 +117,7 @@ function Index() {
           headline="Seu WhatsApp atendendo sozinho, 24 horas por dia"
           sub="Agente de IA que responde, agenda e qualifica — feito para o seu tipo de negócio. Sem programar, sem API key, no ar em minutos."
           cta={<CTA helper="Resposta em minutos, sem compromisso." />}
-          visual={
-            <ChatDemo
-              messages={[
-                { from: "user", text: "Oi, tem horário essa semana?" },
-                { from: "ai", text: "Olá! Tenho quinta às 14h ou sexta às 9h. Qual prefere?" },
-                { from: "user", text: "Quinta 14h" },
-                { from: "ai", text: "Agendado ✅ Enviei a confirmação e lembro você 24h antes." },
-              ]}
-            />
-          }
+          visual={<ChatSim messages={GENERAL_CHAT} />}
           stats={[
             { value: "24/7", label: "Atendimento automático" },
             { value: "< 10 min", label: "Para colocar no ar" },
@@ -162,7 +153,7 @@ function Index() {
         <Section>
           <SectionTitle
             eyebrow="Por dentro da plataforma"
-            title="Tudo que o ZapBook faz pelo seu atendimento"
+            title="Tudo que o ZapPulse faz pelo seu atendimento"
             subtitle="Nove recursos que rodam por trás de cada conversa, incluídos em qualquer plano."
           />
           <FeatureGrid features={FEATURES} />

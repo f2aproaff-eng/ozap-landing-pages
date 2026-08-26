@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { CAFETERIA_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Cafeteria com Pedido 24h no WhatsApp | ZapBook";
+const title = "Cafeteria com Pedido 24h no WhatsApp | ZapPulse";
 const description =
   "Agente de IA que tira pedido, confirma retirada e avisa quando está pronto — sem fila de mensagem.";
 
@@ -114,7 +114,7 @@ function CafeteriaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da cafeteria."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da cafeteria."
           />
           <FeatureGrid features={featured} />
         </Section>

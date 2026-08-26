@@ -42,7 +42,7 @@ Crie os seguintes componentes que serão herdados por todas as 3 páginas:
 
 - Menu simples: "Consultório | Clínica | Advogado" (links para as 3 rotas)
 
-- Botão "Ver Demo" no topo direito (link WhatsApp: https://wa.me/5553991774147)
+- Botão "Ver Demo" no topo direito (link WhatsApp: https://wa.me/5511914310221)
 
 - Background: Gradient suave azul/branco
 
@@ -50,7 +50,7 @@ Crie os seguintes componentes que serão herdados por todas as 3 páginas:
 
 - Botão destacado "Agendar Demo Agora"
 
-- Link WhatsApp: https://wa.me/5553991774147?text=Oi!%20Gostaria%20de%20uma%20demo
+- Link WhatsApp: https://wa.me/5511914310221?text=Oi!%20Gostaria%20de%20uma%20demo
 
 - Cor: Verde/Azul degradê
 

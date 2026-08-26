@@ -17,7 +17,7 @@ import {
 } from "@/components/site/sections";
 import { ACADEMIA_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
-const title = "Academia com IA Responde 24h | ZapBook";
+const title = "Academia com IA Responde 24h | ZapPulse";
 const description =
   "Agente de IA que qualifica lead, agenda aula experimental e reduz cancelamento — direto no WhatsApp da sua academia.";
 
@@ -114,7 +114,7 @@ function AcademiaPage() {
           <SectionTitle
             eyebrow="Funcionalidades incluídas"
             title="O que vem junto com o seu agente"
-            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da academia."
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapPulse, aplicados ao dia a dia da academia."
           />
           <FeatureGrid features={featured} />
         </Section>
