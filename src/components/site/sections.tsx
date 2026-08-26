@@ -21,7 +21,7 @@ export function Section({
 }) {
   return (
     <section id={id} className={alt ? "bg-surface-alt" : "bg-background"}>
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:py-24">{children}</div>
+      <div className="mx-auto max-w-6xl px-4 py-20 sm:py-24">{children}</div>
     </section>
   );
 }
@@ -36,21 +36,23 @@ export function SectionTitle({
   subtitle?: string;
 }) {
   return (
-    <div className="mx-auto mb-12 max-w-2xl text-center">
+    <div className="mx-auto mb-14 max-w-2xl text-center">
       {eyebrow && (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-success">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-muted-foreground">{subtitle}</p>}
+      <h2 className="font-serif text-4xl italic leading-[1.05] tracking-[-0.02em] text-foreground sm:text-5xl">
+        {title}
+      </h2>
+      {subtitle && <p className="mt-4 text-base text-muted-foreground">{subtitle}</p>}
     </div>
   );
 }
 
 export function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-success/30 hover:shadow-lg">
+    <div className="rounded-2xl border border-border bg-card p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-1 hover:border-brand/30">
       {children}
     </div>
   );
@@ -77,7 +79,7 @@ export function WinCard({ text }: { text: string }) {
 export function StepCard({ n, text }: { n: number; text: string }) {
   return (
     <Card>
-      <span className="inline-flex size-9 items-center justify-center rounded-full bg-gradient-to-r from-success to-brand text-sm font-bold text-primary-foreground">
+      <span className="inline-flex size-9 items-center justify-center rounded-full bg-secondary font-mono text-sm font-medium text-secondary-foreground">
         {n}
       </span>
       <p className="mt-3 font-medium text-card-foreground">{text}</p>
@@ -98,15 +100,17 @@ export function FeatureCard({
   index: number;
 }) {
   return (
-    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-success/40">
-      <div className="flex size-11 items-center justify-center rounded-xl bg-success/10 text-success transition-colors group-hover:bg-success/20">
+    <div className="group relative rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-brand/30">
+      <div className="flex size-11 items-center justify-center rounded-xl bg-white/[0.06] text-foreground transition-colors group-hover:bg-brand/10 group-hover:text-brand">
         <Icon className="size-5" />
       </div>
-      <h3 className="mt-4 text-base font-bold text-foreground">{title}</h3>
+      <h3 className="mt-4 font-mono text-xs uppercase tracking-[0.08em] text-foreground">
+        {title}
+      </h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
       <div className="mt-6 flex items-center justify-between">
-        <span className="h-px w-10 bg-gradient-to-r from-success to-brand" />
-        <span className="text-2xl font-extrabold text-border">
+        <span className="h-px w-10 bg-border" />
+        <span className="font-mono text-2xl font-medium text-muted-foreground/20">
           {String(index).padStart(2, "0")}
         </span>
       </div>
@@ -132,7 +136,7 @@ export function FaqSection({ items }: { items: FaqItem[] }) {
   return (
     <Accordion type="single" collapsible className="mx-auto w-full max-w-3xl">
       {items.map((item, i) => (
-        <AccordionItem key={item.q} value={`item-${i}`} className="border-border/70">
+        <AccordionItem key={item.q} value={`item-${i}`} className="border-border">
           <AccordionTrigger className="py-5 text-left text-base font-semibold text-foreground hover:no-underline">
             {item.q}
           </AccordionTrigger>
@@ -161,47 +165,51 @@ export function PriceCard({
   return (
     <div
       className={cn(
-        "relative mx-auto max-w-lg rounded-2xl border p-8 shadow-lg",
-        highlight
-          ? "border-success/50 bg-card shadow-success/10"
-          : "border-border bg-card shadow-black/20",
+        "relative mx-auto max-w-lg rounded-2xl border p-8",
+        highlight ? "border-brand/40 bg-card" : "border-border bg-card",
       )}
     >
       {highlight && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-success to-brand px-4 py-1 text-xs font-bold text-primary-foreground shadow-md">
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full border border-brand/40 bg-background px-4 py-1 font-mono text-[11px] tracking-[0.08em] text-brand">
           Sem fidelidade
         </span>
       )}
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-muted-foreground">Setup (uma vez)</p>
-          <p className="text-3xl font-bold text-foreground">{setup}</p>
+          <p className="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
+            Setup (uma vez)
+          </p>
+          <p className="mt-1 font-serif text-3xl italic text-foreground">{setup}</p>
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Recorrência</p>
-          <p className="text-3xl font-bold text-success">{monthly}</p>
+          <p className="font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
+            Recorrência
+          </p>
+          <p className="mt-1 font-serif text-3xl italic text-brand">{monthly}</p>
         </div>
       </div>
       <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
         {includes.map((i) => (
           <li key={i} className="flex items-start gap-2">
-            <span className="text-success">✅</span>
+            <span className="text-brand">✓</span>
             <span>{i}</span>
           </li>
         ))}
       </ul>
-      {note && <p className="mt-6 text-xs text-muted-foreground">{note}</p>}
+      {note && <p className="mt-6 font-mono text-[11px] text-muted-foreground/70">{note}</p>}
     </div>
   );
 }
 
 export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: string }[] }) {
   return (
-    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-2xl shadow-black/40">
+    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
       <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
-        <p className="text-xs font-semibold text-muted-foreground">WhatsApp · Agente ZapBook</p>
-        <span className="flex items-center gap-1 text-[10px] font-semibold text-success">
-          <span className="size-1.5 rounded-full bg-success" /> online
+        <p className="font-mono text-[11px] tracking-[0.04em] text-muted-foreground">
+          WhatsApp · Agente ZapBook
+        </p>
+        <span className="flex items-center gap-1 font-mono text-[10px] text-brand">
+          <span className="size-1.5 rounded-full bg-brand" /> online
         </span>
       </div>
       <div className="space-y-2">
@@ -211,7 +219,7 @@ export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: 
             className={
               m.from === "user"
                 ? "ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-secondary px-3 py-2 text-sm text-secondary-foreground"
-                : "mr-auto max-w-[85%] rounded-2xl rounded-bl-sm bg-gradient-to-r from-success to-brand px-3 py-2 text-sm text-primary-foreground"
+                : "mr-auto max-w-[85%] rounded-2xl rounded-bl-sm border border-brand/30 bg-card px-3 py-2 text-sm text-foreground"
             }
           >
             {m.text}
@@ -224,11 +232,13 @@ export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: 
 
 export function ChatGif({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-2xl shadow-black/40">
+    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
       <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
-        <p className="text-xs font-semibold text-muted-foreground">WhatsApp · Agente ZapBook</p>
-        <span className="flex items-center gap-1 text-[10px] font-semibold text-success">
-          <span className="size-1.5 rounded-full bg-success" /> online
+        <p className="font-mono text-[11px] tracking-[0.04em] text-muted-foreground">
+          WhatsApp · Agente ZapBook
+        </p>
+        <span className="flex items-center gap-1 font-mono text-[10px] text-brand">
+          <span className="size-1.5 rounded-full bg-brand" /> online
         </span>
       </div>
       <img src={src} alt={alt} className="w-full rounded-xl" loading="lazy" />
@@ -238,12 +248,14 @@ export function ChatGif({ src, alt }: { src: string; alt: string }) {
 
 export function StatRow({ stats }: { stats: { value: string; label: string }[] }) {
   return (
-    <div className="relative border-t border-border/60 bg-card/40">
+    <div className="relative border-t border-border bg-card/30">
       <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-8 sm:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label} className="text-center">
-            <p className="text-2xl font-extrabold text-foreground sm:text-3xl">{s.value}</p>
-            <p className="mt-1 text-xs text-muted-foreground">{s.label}</p>
+            <p className="font-mono text-2xl font-medium text-foreground sm:text-3xl">{s.value}</p>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+              {s.label}
+            </p>
           </div>
         ))}
       </div>
@@ -258,6 +270,7 @@ export function Hero({
   cta,
   visual,
   stats,
+  wordmark = "ZapBook",
 }: {
   eyebrow?: string;
   headline: string;
@@ -265,41 +278,50 @@ export function Hero({
   cta?: ReactNode;
   visual?: ReactNode;
   stats?: { value: string; label: string }[];
+  wordmark?: string | false;
 }) {
   return (
     <section className="relative overflow-hidden bg-background">
+      {wordmark && (
+        <p
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-8 w-[200%] -translate-x-1/2 select-none whitespace-nowrap text-center font-serif italic leading-none"
+          style={{
+            fontSize: "min(38vw, 420px)",
+            backgroundImage: "linear-gradient(180deg, rgb(209,209,209) 0%, rgb(255,255,255) 100%)",
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+            opacity: 0.06,
+          }}
+        >
+          {wordmark}
+        </p>
+      )}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
+        className="pointer-events-none absolute inset-0 opacity-[0.25]"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.14) 1px, transparent 0)",
-          backgroundSize: "26px 26px",
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)",
+          backgroundSize: "28px 28px",
         }}
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-24 left-1/4 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-brand/25 blur-[130px]"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute top-10 right-0 h-[360px] w-[360px] rounded-full bg-success/20 blur-[130px]"
-      />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-20 sm:py-28 md:grid-cols-2">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-24 sm:py-32 md:grid-cols-2">
         <div>
           {eyebrow && (
-            <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1 text-xs font-semibold text-success">
+            <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border px-3 py-1 font-mono text-xs tracking-[0.04em] text-muted-foreground">
               {eyebrow}
             </p>
           )}
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl">
+          <h1 className="font-serif text-[40px] italic leading-[1.02] tracking-[-0.03em] text-foreground sm:text-[56px] lg:text-[64px] lg:tracking-[-0.04em]">
             {headline}
           </h1>
-          <p className="mt-5 text-lg text-muted-foreground">{sub}</p>
+          <p className="mt-5 max-w-md text-base text-muted-foreground sm:text-lg">{sub}</p>
           <div className="mt-8 flex justify-start">{cta}</div>
         </div>
-        <div>{visual}</div>
+        <div className="relative">{visual}</div>
       </div>
 
       {stats && <StatRow stats={stats} />}

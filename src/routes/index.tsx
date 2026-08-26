@@ -92,12 +92,14 @@ function Index() {
               <Link
                 key={n.to}
                 to={n.to}
-                className="group rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-success/40 hover:shadow-lg"
+                className="group rounded-2xl border border-border bg-card p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-1 hover:border-brand/30"
               >
-                <h2 className="text-xl font-bold text-foreground">{n.label}</h2>
+                <h2 className="font-serif text-xl italic text-foreground">{n.label}</h2>
                 <p className="mt-3 text-sm text-muted-foreground">{n.text}</p>
-                <p className="mt-4 text-xs font-medium text-muted-foreground">{n.price}</p>
-                <p className="mt-2 text-sm font-semibold text-success">Ver página →</p>
+                <p className="mt-4 font-mono text-xs tracking-[0.04em] text-muted-foreground">
+                  {n.price}
+                </p>
+                <p className="mt-2 font-mono text-xs tracking-[0.04em] text-brand">Ver página →</p>
               </Link>
             ))}
           </div>

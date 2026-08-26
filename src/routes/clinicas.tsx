@@ -118,9 +118,7 @@ function ClinicasPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {cases.map((c) => (
               <Card key={c.t}>
-                <p className="text-xs font-semibold uppercase tracking-widest text-success">
-                  {c.t}
-                </p>
+                <p className="font-mono text-xs uppercase tracking-[0.15em] text-brand">{c.t}</p>
                 <p className="mt-3 font-medium text-card-foreground">{c.d}</p>
               </Card>
             ))}
