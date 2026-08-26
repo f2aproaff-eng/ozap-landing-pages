@@ -10,18 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AcademiaRouteImport } from './routes/academia'
 import { Route as AdvogadosRouteImport } from './routes/advogados'
+import { Route as CafeteriaRouteImport } from './routes/cafeteria'
 import { Route as ClinicasRouteImport } from './routes/clinicas'
 import { Route as ConsultorioRouteImport } from './routes/consultorio'
+import { Route as DesignRouteImport } from './routes/design'
+import { Route as EcommerceRouteImport } from './routes/ecommerce'
+import { Route as EscolaRouteImport } from './routes/escola'
+import { Route as ImobiliariaRouteImport } from './routes/imobiliaria'
+import { Route as LojaRouteImport } from './routes/loja'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AcademiaRoute = AcademiaRouteImport.update({
+  id: '/academia',
+  path: '/academia',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdvogadosRoute = AdvogadosRouteImport.update({
   id: '/advogados',
   path: '/advogados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CafeteriaRoute = CafeteriaRouteImport.update({
+  id: '/cafeteria',
+  path: '/cafeteria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ClinicasRoute = ClinicasRouteImport.update({
@@ -34,39 +51,126 @@ const ConsultorioRoute = ConsultorioRouteImport.update({
   path: '/consultorio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DesignRoute = DesignRouteImport.update({
+  id: '/design',
+  path: '/design',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EcommerceRoute = EcommerceRouteImport.update({
+  id: '/ecommerce',
+  path: '/ecommerce',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EscolaRoute = EscolaRouteImport.update({
+  id: '/escola',
+  path: '/escola',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImobiliariaRoute = ImobiliariaRouteImport.update({
+  id: '/imobiliaria',
+  path: '/imobiliaria',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LojaRoute = LojaRouteImport.update({
+  id: '/loja',
+  path: '/loja',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
+  '/design': typeof DesignRoute
+  '/ecommerce': typeof EcommerceRoute
+  '/escola': typeof EscolaRoute
+  '/imobiliaria': typeof ImobiliariaRoute
+  '/loja': typeof LojaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
+  '/design': typeof DesignRoute
+  '/ecommerce': typeof EcommerceRoute
+  '/escola': typeof EscolaRoute
+  '/imobiliaria': typeof ImobiliariaRoute
+  '/loja': typeof LojaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
+  '/design': typeof DesignRoute
+  '/ecommerce': typeof EcommerceRoute
+  '/escola': typeof EscolaRoute
+  '/imobiliaria': typeof ImobiliariaRoute
+  '/loja': typeof LojaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/advogados' | '/clinicas' | '/consultorio'
+  fullPaths:
+    | '/'
+    | '/academia'
+    | '/advogados'
+    | '/cafeteria'
+    | '/clinicas'
+    | '/consultorio'
+    | '/design'
+    | '/ecommerce'
+    | '/escola'
+    | '/imobiliaria'
+    | '/loja'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/advogados' | '/clinicas' | '/consultorio'
-  id: '__root__' | '/' | '/advogados' | '/clinicas' | '/consultorio'
+  to:
+    | '/'
+    | '/academia'
+    | '/advogados'
+    | '/cafeteria'
+    | '/clinicas'
+    | '/consultorio'
+    | '/design'
+    | '/ecommerce'
+    | '/escola'
+    | '/imobiliaria'
+    | '/loja'
+  id:
+    | '__root__'
+    | '/'
+    | '/academia'
+    | '/advogados'
+    | '/cafeteria'
+    | '/clinicas'
+    | '/consultorio'
+    | '/design'
+    | '/ecommerce'
+    | '/escola'
+    | '/imobiliaria'
+    | '/loja'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AcademiaRoute: typeof AcademiaRoute
   AdvogadosRoute: typeof AdvogadosRoute
+  CafeteriaRoute: typeof CafeteriaRoute
   ClinicasRoute: typeof ClinicasRoute
   ConsultorioRoute: typeof ConsultorioRoute
+  DesignRoute: typeof DesignRoute
+  EcommerceRoute: typeof EcommerceRoute
+  EscolaRoute: typeof EscolaRoute
+  ImobiliariaRoute: typeof ImobiliariaRoute
+  LojaRoute: typeof LojaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -78,11 +182,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/academia': {
+      id: '/academia'
+      path: '/academia'
+      fullPath: '/academia'
+      preLoaderRoute: typeof AcademiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/advogados': {
       id: '/advogados'
       path: '/advogados'
       fullPath: '/advogados'
       preLoaderRoute: typeof AdvogadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cafeteria': {
+      id: '/cafeteria'
+      path: '/cafeteria'
+      fullPath: '/cafeteria'
+      preLoaderRoute: typeof CafeteriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/clinicas': {
@@ -99,14 +217,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConsultorioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/design': {
+      id: '/design'
+      path: '/design'
+      fullPath: '/design'
+      preLoaderRoute: typeof DesignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ecommerce': {
+      id: '/ecommerce'
+      path: '/ecommerce'
+      fullPath: '/ecommerce'
+      preLoaderRoute: typeof EcommerceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/escola': {
+      id: '/escola'
+      path: '/escola'
+      fullPath: '/escola'
+      preLoaderRoute: typeof EscolaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/imobiliaria': {
+      id: '/imobiliaria'
+      path: '/imobiliaria'
+      fullPath: '/imobiliaria'
+      preLoaderRoute: typeof ImobiliariaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/loja': {
+      id: '/loja'
+      path: '/loja'
+      fullPath: '/loja'
+      preLoaderRoute: typeof LojaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AcademiaRoute: AcademiaRoute,
   AdvogadosRoute: AdvogadosRoute,
+  CafeteriaRoute: CafeteriaRoute,
   ClinicasRoute: ClinicasRoute,
   ConsultorioRoute: ConsultorioRoute,
+  DesignRoute: DesignRoute,
+  EcommerceRoute: EcommerceRoute,
+  EscolaRoute: EscolaRoute,
+  ImobiliariaRoute: ImobiliariaRoute,
+  LojaRoute: LojaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
