@@ -84,7 +84,7 @@ function CafetériaPage() {
           <div className="space-y-4">
             <div className="flex justify-between text-lg">
               <span>Setup (único)</span>
-              <span className="text-2xl font-bold">R$ 1.500</span>
+              <span className="text-2xl font-bold">R$ 1.200</span>
             </div>
             <div className="flex justify-between text-lg border-t pt-4">
               <span>Mensalidade</span>

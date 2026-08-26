@@ -37,19 +37,19 @@ const niches = [
     to: "/consultorio" as const,
     label: "Consultórios",
     text: "Pare de perder agendamentos no WhatsApp. IA responde 24/7.",
-    price: "a partir de R$ 400/mês",
+    price: "a partir de R$ 300/mês",
   },
   {
     to: "/clinicas" as const,
     label: "Clínicas",
     text: "Múltiplos profissionais, agenda organizada e sem duplicidade.",
-    price: "a partir de R$ 400/mês",
+    price: "a partir de R$ 300/mês",
   },
   {
     to: "/advogados" as const,
     label: "Advogados",
     text: "Triagem automática de leads: de 30min para 2min.",
-    price: "a partir de R$ 500/mês",
+    price: "a partir de R$ 300/mês",
   },
 ];
 

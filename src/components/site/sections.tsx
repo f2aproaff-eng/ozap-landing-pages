@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import type { LucideIcon } from "lucide-react";
+import { AlertCircle, Check, type LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -14,13 +14,15 @@ export function Section({
   children,
   alt = false,
   id,
+  className,
 }: {
   children: ReactNode;
   alt?: boolean;
   id?: string;
+  className?: string;
 }) {
   return (
-    <section id={id} className={alt ? "bg-surface-alt" : "bg-background"}>
+    <section id={id} className={cn(alt ? "bg-surface-alt" : "bg-background", className)}>
       <div className="mx-auto max-w-6xl px-4 py-20 sm:py-24">{children}</div>
     </section>
   );
@@ -30,10 +32,12 @@ export function SectionTitle({
   eyebrow,
   title,
   subtitle,
+  children,
 }: {
   eyebrow?: string;
-  title: string;
+  title?: string;
   subtitle?: string;
+  children?: ReactNode;
 }) {
   return (
     <div className="mx-auto mb-14 max-w-2xl text-center">
@@ -43,7 +47,7 @@ export function SectionTitle({
         </p>
       )}
       <h2 className="font-serif text-4xl italic leading-[1.05] tracking-[-0.02em] text-foreground sm:text-5xl">
-        {title}
+        {title ?? children}
       </h2>
       {subtitle && <p className="mt-4 text-base text-muted-foreground">{subtitle}</p>}
     </div>
@@ -52,8 +56,28 @@ export function SectionTitle({
 
 export function Card({ children }: { children: ReactNode }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-1 hover:border-brand/30">
+    <div className="group rounded-2xl border border-border bg-card p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-1 hover:border-brand/30">
       {children}
+    </div>
+  );
+}
+
+/** Caixa de ícone no mesmo padrão visual dos cards da home. */
+function IconBadge({
+  icon: Icon,
+  tone = "neutral",
+}: {
+  icon: LucideIcon;
+  tone?: "neutral" | "brand";
+}) {
+  return (
+    <div
+      className={cn(
+        "flex size-11 items-center justify-center rounded-xl bg-white/[0.06] transition-colors group-hover:bg-brand/10 group-hover:text-brand",
+        tone === "brand" ? "text-brand" : "text-foreground",
+      )}
+    >
+      <Icon className="size-5" />
     </div>
   );
 }
@@ -61,17 +85,34 @@ export function Card({ children }: { children: ReactNode }) {
 export function PainCard({ text }: { text: string }) {
   return (
     <Card>
-      <span className="text-2xl">🔴</span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <IconBadge icon={AlertCircle} />
+      <p className="mt-4 font-medium text-card-foreground">{text}</p>
     </Card>
   );
 }
 
-export function WinCard({ text }: { text: string }) {
+export function WinCard({
+  text,
+  title,
+  description,
+}: {
+  text?: string;
+  icon?: ReactNode;
+  title?: string;
+  description?: string;
+}) {
   return (
     <Card>
-      <span className="text-2xl">✅</span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <IconBadge icon={Check} tone="brand" />
+      {title && <h3 className="mt-4 font-medium text-card-foreground">{title}</h3>}
+      <p
+        className={cn(
+          "font-medium text-card-foreground",
+          title ? "mt-1 text-sm text-muted-foreground font-normal" : "mt-4",
+        )}
+      >
+        {text ?? description}
+      </p>
     </Card>
   );
 }
@@ -79,10 +120,10 @@ export function WinCard({ text }: { text: string }) {
 export function StepCard({ n, text }: { n: number; text: string }) {
   return (
     <Card>
-      <span className="inline-flex size-9 items-center justify-center rounded-full bg-secondary font-mono text-sm font-medium text-secondary-foreground">
-        {n}
-      </span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <div className="flex size-11 items-center justify-center rounded-xl bg-white/[0.06] font-mono text-sm font-medium text-foreground transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+        {String(n).padStart(2, "0")}
+      </div>
+      <p className="mt-4 font-medium text-card-foreground">{text}</p>
     </Card>
   );
 }
@@ -155,13 +196,29 @@ export function PriceCard({
   includes,
   highlight,
   note,
+  title,
+  subtitle,
 }: {
-  setup: string;
-  monthly: string;
-  includes: string[];
+  setup?: string;
+  monthly?: string;
+  includes?: string[];
   highlight?: boolean;
   note?: string;
+  title?: string;
+  subtitle?: string;
 }) {
+  if (title) {
+    return (
+      <div className="rounded-2xl border border-border bg-card p-8 text-center">
+        <p className="font-serif text-4xl italic text-brand">{title}</p>
+        {subtitle && (
+          <p className="mt-2 font-mono text-xs uppercase tracking-[0.1em] text-muted-foreground">
+            {subtitle}
+          </p>
+        )}
+      </div>
+    );
+  }
   return (
     <div
       className={cn(
@@ -189,7 +246,7 @@ export function PriceCard({
         </div>
       </div>
       <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
-        {includes.map((i) => (
+        {(includes ?? []).map((i) => (
           <li key={i} className="flex items-start gap-2">
             <span className="text-brand">✓</span>
             <span>{i}</span>
@@ -382,10 +439,18 @@ export function Hero({
   visual,
   stats,
   wordmark = "ZapBook",
+  title,
+  subtitle,
+  ctaText,
+  ctaLink,
 }: {
   eyebrow?: string;
-  headline: string;
-  sub: string;
+  headline?: string;
+  sub?: string;
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
   cta?: ReactNode;
   visual?: ReactNode;
   stats?: { value: string; label: string }[];
@@ -427,10 +492,24 @@ export function Hero({
             </p>
           )}
           <h1 className="font-serif text-[40px] italic leading-[1.02] tracking-[-0.03em] text-foreground sm:text-[56px] lg:text-[64px] lg:tracking-[-0.04em]">
-            {headline}
+            {headline ?? title}
           </h1>
-          <p className="mt-5 max-w-md text-base text-muted-foreground sm:text-lg">{sub}</p>
-          <div className="mt-8 flex justify-start">{cta}</div>
+          <p className="mt-5 max-w-md text-base text-muted-foreground sm:text-lg">
+            {sub ?? subtitle}
+          </p>
+          <div className="mt-8 flex justify-start">
+            {cta ??
+              (ctaText && (
+                <a
+                  href={ctaLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 font-mono text-sm font-medium tracking-[0.02em] text-primary-foreground transition-transform hover:-translate-y-0.5"
+                >
+                  {ctaText}
+                </a>
+              ))}
+          </div>
         </div>
         <div className="relative">{visual}</div>
       </div>
