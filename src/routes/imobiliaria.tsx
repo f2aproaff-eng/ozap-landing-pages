@@ -4,16 +4,21 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
+  ChatSim,
+  FaqSection,
+  FeatureGrid,
   Hero,
+  PainCard,
   PriceCard,
   Section,
   SectionTitle,
+  StepCard,
   WinCard,
 } from "@/components/site/sections";
+import { FAQS, FEATURES, IMOBILIARIA_CHAT } from "@/components/site/data";
 
 const title = "Venda Imóvel com Agente de IA | ZapBook";
-const description =
-  "Qualifica lead, agenda visita, reduz tempo de venda com inteligência artificial.";
+const description = "Qualifica lead, agenda visita e reduz tempo de venda — direto no WhatsApp.";
 
 export const Route = createFileRoute("/imobiliaria")({
   head: () => ({
@@ -25,82 +30,114 @@ export const Route = createFileRoute("/imobiliaria")({
       { property: "og:type", content: "website" },
     ],
   }),
-  component: ImobiliáriaPage,
+  component: ImobiliariaPage,
 });
 
-function ImobiliáriaPage() {
+const featured = FEATURES.filter((f) =>
+  [
+    "IA própria, sem custo extra",
+    "Pipeline visual de leads",
+    "Integrações prontas",
+    "Múltiplos números",
+    "Você sempre no controle",
+    "Configuração em minutos",
+  ].includes(f.title),
+);
+
+const imobiliariaFaqs = [
+  {
+    q: "O agente consegue enviar fotos e detalhes de vários imóveis?",
+    a: "Sim, você cadastra o catálogo de imóveis e o agente busca e envia as informações certas conforme o interesse do lead.",
+  },
+  {
+    q: "Dá pra qualificar o lead antes de agendar a visita?",
+    a: "Dá. O agente pergunta orçamento, região e urgência antes de marcar, então você só recebe visita de quem realmente tem chance de fechar.",
+  },
+  ...FAQS.filter((f) =>
+    [
+      "Posso assumir a conversa manualmente quando quiser?",
+      "Existe fidelidade ou multa de cancelamento?",
+    ].includes(f.q),
+  ),
+];
+
+function ImobiliariaPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      
-      <Hero
-        title="Venda imóvel com agente de IA"
-        subtitle="Qualifica lead, agenda visita, reduz tempo de venda"
-        ctaText="Começar"
-        ctaLink="https://wa.me/5553991774147"
-      />
+      <main className="flex-1">
+        <Hero
+          eyebrow="Para imobiliárias e corretores"
+          headline="Pare de Perder Lead por Demora no WhatsApp"
+          sub="Seu agente de IA qualifica lead, envia detalhes do imóvel e agenda visita na hora."
+          cta={<CTA helper="Resposta em minutos, sem compromisso." />}
+          visual={<ChatSim messages={IMOBILIARIA_CHAT} />}
+          stats={[
+            { value: "+30%", label: "Vendas/mês" },
+            { value: "-40%", label: "Ciclo de venda" },
+            { value: "+50%", label: "Conversão de lead" },
+            { value: "< 10 min", label: "Para colocar no ar" },
+          ]}
+        />
 
-      <Section>
-        <SectionTitle>Lead frio demora = oportunidade perdida</SectionTitle>
-        <p className="text-center text-lg text-gray-700 mb-8">
-          Imobiliária perde venda porque: cliente pergunta detalhe | demora responder | compra com concorrente
-        </p>
-        <div className="text-6xl text-center">🏠</div>
-      </Section>
-
-      <Section>
-        <SectionTitle>IA qualifica cliente</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <WinCard
-            icon="✅"
-            title="Cliente pergunta"
-            description="Tem imóvel 2 quartos?"
-          />
-          <WinCard
-            icon="✅"
-            title="Agente descreve"
-            description="Foto, preço, agendamento"
-          />
-          <WinCard
-            icon="✅"
-            title="Visita agendada"
-            description="Na hora"
-          />
-        </div>
-      </Section>
-
-      <Section className="bg-gray-50">
-        <SectionTitle>Vende mais rápido</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <PriceCard title="+30%" subtitle="vendas/mês" />
-          <PriceCard title="-40%" subtitle="ciclo venda" />
-          <PriceCard title="+50%" subtitle="conversão lead" />
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Preço</SectionTitle>
-        <div className="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg">
-          <div className="space-y-4">
-            <div className="flex justify-between text-lg">
-              <span>Setup (único)</span>
-              <span className="text-2xl font-bold">R$ 1.200</span>
-            </div>
-            <div className="flex justify-between text-lg border-t pt-4">
-              <span>Mensalidade</span>
-              <span className="text-2xl font-bold">R$ 300/mês</span>
-            </div>
+        <Section alt>
+          <SectionTitle eyebrow="O problema" title="Todo dia a mesma corrida" />
+          <div className="grid gap-6 md:grid-cols-3">
+            <PainCard text="Lead pergunta detalhe e demora resposta = compra com concorrente" />
+            <PainCard text="Visita agendada sem confirmação vira furo" />
+            <PainCard text="Corretor perde tempo repetindo a mesma informação" />
           </div>
-        </div>
-      </Section>
+        </Section>
 
-      <CTA 
-        title="Comece a vender agora"
-        description="Ganhe tempo, venda mais"
-        buttonText="Começar"
-        buttonLink="https://wa.me/5553991774147"
-      />
+        <Section>
+          <SectionTitle eyebrow="A solução" title="Um agente que atende como você" />
+          <div className="grid gap-6 sm:grid-cols-2">
+            <WinCard text="Agente envia foto, preço e detalhes na hora" />
+            <WinCard text="Qualifica o lead antes de agendar a visita" />
+            <WinCard text="Agenda visita direto no seu calendário" />
+            <WinCard text="Confirmação + lembrete reduz furo de visita" />
+          </div>
+        </Section>
 
+        <Section alt>
+          <SectionTitle title="Como funciona" />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <StepCard n={1} text="Lead pergunta sobre um imóvel no WhatsApp" />
+            <StepCard n={2} text="IA envia detalhes, fotos e qualifica o interesse" />
+            <StepCard n={3} text="Agenda a visita direto no calendário" />
+            <StepCard n={4} text="Confirmação automática + lembrete antes da visita" />
+          </div>
+        </Section>
+
+        <Section>
+          <SectionTitle
+            eyebrow="Funcionalidades incluídas"
+            title="O que vem junto com o seu agente"
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da imobiliária."
+          />
+          <FeatureGrid features={featured} />
+        </Section>
+
+        <Section alt>
+          <SectionTitle title="Investimento" subtitle="Sem fidelidade. Cancele quando quiser." />
+          <PriceCard
+            highlight
+            setup="R$ 1.200"
+            monthly="R$ 300/mês"
+            includes={["Configuração completa", "Google Calendar integrado", "Suporte contínuo"]}
+          />
+        </Section>
+
+        <Section>
+          <SectionTitle eyebrow="Dúvidas comuns" title="Perguntas frequentes" />
+          <FaqSection items={imobiliariaFaqs} />
+        </Section>
+
+        <Section alt>
+          <SectionTitle title="Pronto pra vender mais rápido?" />
+          <CTA />
+        </Section>
+      </main>
       <Footer />
     </div>
   );

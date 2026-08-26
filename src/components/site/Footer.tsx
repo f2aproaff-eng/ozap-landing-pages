@@ -39,6 +39,11 @@ export function Footer() {
                 Advogados
               </Link>
             </li>
+            <li>
+              <Link to="/" hash="segmentos" className="text-brand hover:underline">
+                Todos os segmentos →
+              </Link>
+            </li>
           </ul>
         </div>
 

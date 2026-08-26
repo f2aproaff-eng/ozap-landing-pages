@@ -51,6 +51,60 @@ const niches = [
     text: "Triagem automática de leads: de 30min para 2min.",
     price: "a partir de R$ 300/mês",
   },
+  {
+    to: "/academia" as const,
+    label: "Academia",
+    text: "Lead que não fecha matrícula? Agente qualifica e agenda prova grátis.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/cafeteria" as const,
+    label: "Cafeteria",
+    text: "Pedido no WhatsApp sem espera. Agente confirma e avisa a retirada.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/design" as const,
+    label: "Design",
+    text: "Chega de retrabalho. Agente tira o briefing completo antes da reunião.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/ecommerce" as const,
+    label: "E-commerce",
+    text: "Recupere carrinho abandonado com resposta em segundos, 24/7.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/escola" as const,
+    label: "Escola",
+    text: "Pai com dúvida vira matrícula. Agente responde e agenda visita.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/imobiliaria" as const,
+    label: "Imobiliária",
+    text: "Lead frio esfria rápido. Agente qualifica e agenda visita na hora.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/loja" as const,
+    label: "Loja",
+    text: "Sua loja vendendo 24/7, sem perder nenhuma pergunta de cliente.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/barbearia" as const,
+    label: "Barbearia",
+    text: "Fila cheia? Agente marca horário sozinho e evita furo de agenda.",
+    price: "a partir de R$ 300/mês",
+  },
+  {
+    to: "/restaurante" as const,
+    label: "Restaurante",
+    text: "Reserva e pedido sem ligação, mesmo no horário de pico.",
+    price: "a partir de R$ 300/mês",
+  },
 ];
 
 function Index() {
@@ -81,13 +135,13 @@ function Index() {
           ]}
         />
 
-        <Section alt>
+        <Section id="segmentos" alt>
           <SectionTitle
             eyebrow="Escolha seu segmento"
             title="Feito sob medida para o seu negócio"
             subtitle="Cada página abaixo mostra exatamente como o agente se comporta no seu tipo de atendimento."
           />
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {niches.map((n) => (
               <Link
                 key={n.to}

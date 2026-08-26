@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AcademiaRouteImport } from './routes/academia'
 import { Route as AdvogadosRouteImport } from './routes/advogados'
+import { Route as BarbeariaRouteImport } from './routes/barbearia'
 import { Route as CafeteriaRouteImport } from './routes/cafeteria'
 import { Route as ClinicasRouteImport } from './routes/clinicas'
 import { Route as ConsultorioRouteImport } from './routes/consultorio'
@@ -20,6 +21,7 @@ import { Route as EcommerceRouteImport } from './routes/ecommerce'
 import { Route as EscolaRouteImport } from './routes/escola'
 import { Route as ImobiliariaRouteImport } from './routes/imobiliaria'
 import { Route as LojaRouteImport } from './routes/loja'
+import { Route as RestauranteRouteImport } from './routes/restaurante'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,6 +36,11 @@ const AcademiaRoute = AcademiaRouteImport.update({
 const AdvogadosRoute = AdvogadosRouteImport.update({
   id: '/advogados',
   path: '/advogados',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BarbeariaRoute = BarbeariaRouteImport.update({
+  id: '/barbearia',
+  path: '/barbearia',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CafeteriaRoute = CafeteriaRouteImport.update({
@@ -76,11 +83,17 @@ const LojaRoute = LojaRouteImport.update({
   path: '/loja',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RestauranteRoute = RestauranteRouteImport.update({
+  id: '/restaurante',
+  path: '/restaurante',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
@@ -89,11 +102,13 @@ export interface FileRoutesByFullPath {
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/restaurante': typeof RestauranteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
@@ -102,12 +117,14 @@ export interface FileRoutesByTo {
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/restaurante': typeof RestauranteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/academia': typeof AcademiaRoute
   '/advogados': typeof AdvogadosRoute
+  '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
   '/consultorio': typeof ConsultorioRoute
@@ -116,6 +133,7 @@ export interface FileRoutesById {
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/restaurante': typeof RestauranteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -123,6 +141,7 @@ export interface FileRouteTypes {
     | '/'
     | '/academia'
     | '/advogados'
+    | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
     | '/consultorio'
@@ -131,11 +150,13 @@ export interface FileRouteTypes {
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/restaurante'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/academia'
     | '/advogados'
+    | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
     | '/consultorio'
@@ -144,11 +165,13 @@ export interface FileRouteTypes {
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/restaurante'
   id:
     | '__root__'
     | '/'
     | '/academia'
     | '/advogados'
+    | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
     | '/consultorio'
@@ -157,12 +180,14 @@ export interface FileRouteTypes {
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/restaurante'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AcademiaRoute: typeof AcademiaRoute
   AdvogadosRoute: typeof AdvogadosRoute
+  BarbeariaRoute: typeof BarbeariaRoute
   CafeteriaRoute: typeof CafeteriaRoute
   ClinicasRoute: typeof ClinicasRoute
   ConsultorioRoute: typeof ConsultorioRoute
@@ -171,6 +196,7 @@ export interface RootRouteChildren {
   EscolaRoute: typeof EscolaRoute
   ImobiliariaRoute: typeof ImobiliariaRoute
   LojaRoute: typeof LojaRoute
+  RestauranteRoute: typeof RestauranteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -194,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/advogados'
       fullPath: '/advogados'
       preLoaderRoute: typeof AdvogadosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/barbearia': {
+      id: '/barbearia'
+      path: '/barbearia'
+      fullPath: '/barbearia'
+      preLoaderRoute: typeof BarbeariaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cafeteria': {
@@ -252,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LojaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/restaurante': {
+      id: '/restaurante'
+      path: '/restaurante'
+      fullPath: '/restaurante'
+      preLoaderRoute: typeof RestauranteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -259,6 +299,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AcademiaRoute: AcademiaRoute,
   AdvogadosRoute: AdvogadosRoute,
+  BarbeariaRoute: BarbeariaRoute,
   CafeteriaRoute: CafeteriaRoute,
   ClinicasRoute: ClinicasRoute,
   ConsultorioRoute: ConsultorioRoute,
@@ -267,6 +308,7 @@ const rootRouteChildren: RootRouteChildren = {
   EscolaRoute: EscolaRoute,
   ImobiliariaRoute: ImobiliariaRoute,
   LojaRoute: LojaRoute,
+  RestauranteRoute: RestauranteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

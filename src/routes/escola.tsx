@@ -4,16 +4,22 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
+  ChatSim,
+  FaqSection,
+  FeatureGrid,
   Hero,
+  PainCard,
   PriceCard,
   Section,
   SectionTitle,
+  StepCard,
   WinCard,
 } from "@/components/site/sections";
+import { ESCOLA_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
 const title = "Escola com Matrícula Automática | ZapBook";
 const description =
-  "IA responde dúvida de pai, agenda visita, qualifica candidato.";
+  "IA responde dúvida de pai, agenda visita e qualifica candidato — reduz desistência.";
 
 export const Route = createFileRoute("/escola")({
   head: () => ({
@@ -28,79 +34,111 @@ export const Route = createFileRoute("/escola")({
   component: EscolaPage,
 });
 
+const featured = FEATURES.filter((f) =>
+  [
+    "IA própria, sem custo extra",
+    "Digitação humanizada",
+    "Pipeline visual de leads",
+    "Integrações prontas",
+    "Você sempre no controle",
+    "Configuração em minutos",
+  ].includes(f.title),
+);
+
+const escolaFaqs = [
+  {
+    q: "O agente consegue explicar a proposta pedagógica certinho?",
+    a: "Sim, você configura as informações da escola uma vez e o agente responde de forma consistente pra qualquer pai que perguntar.",
+  },
+  {
+    q: "Dá pra agendar direto no calendário da secretaria?",
+    a: "Dá. A integração com Google Calendar já vem pronta, então a visita é agendada sem risco de choque de horário.",
+  },
+  ...FAQS.filter((f) =>
+    [
+      "Posso assumir a conversa manualmente quando quiser?",
+      "Existe fidelidade ou multa de cancelamento?",
+    ].includes(f.q),
+  ),
+];
+
 function EscolaPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="flex min-h-screen flex-col">
       <Header />
-      
-      <Hero
-        title="Escola com matrícula automática"
-        subtitle="IA responde dúvida de pai, agenda visita, qualifica candidato"
-        ctaText="Começar Agora"
-        ctaLink="https://wa.me/5553991774147"
-      />
+      <main className="flex-1">
+        <Hero
+          eyebrow="Para escolas e cursos"
+          headline="Pare de Perder Matrícula por Demora no WhatsApp"
+          sub="Seu agente de IA responde dúvida de pai, agenda visita e reduz desistência."
+          cta={<CTA helper="Resposta em minutos, sem compromisso." />}
+          visual={<ChatSim messages={ESCOLA_CHAT} />}
+          stats={[
+            { value: "+35%", label: "Matrículas/ano" },
+            { value: "-40%", label: "Desistência visitante" },
+            { value: "4h", label: "Retrabalho reduzido/dia" },
+            { value: "< 10 min", label: "Para colocar no ar" },
+          ]}
+        />
 
-      <Section>
-        <SectionTitle>Interessado que demora = oportunidade perdida</SectionTitle>
-        <p className="text-center text-lg text-gray-700 mb-8">
-          Escola perde aluno porque: pai tem dúvida | escola demora | desiste | coloca filho em outro lugar
-        </p>
-        <div className="text-6xl text-center">🎓</div>
-      </Section>
-
-      <Section>
-        <SectionTitle>IA fideliza pai</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <WinCard
-            icon="✅"
-            title="Pai pergunta"
-            description="Qual valor?"
-          />
-          <WinCard
-            icon="✅"
-            title="Agente explica"
-            description="Proposta, agenda visita"
-          />
-          <WinCard
-            icon="✅"
-            title="Acompanha"
-            description="Reduz desistência"
-          />
-        </div>
-      </Section>
-
-      <Section className="bg-gray-50">
-        <SectionTitle>Cresce matrícula</SectionTitle>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <PriceCard title="+35%" subtitle="matrículas/ano" />
-          <PriceCard title="-40%" subtitle="desistência visitante" />
-          <PriceCard title="4h" subtitle="retrabalho reduzido/dia" />
-        </div>
-      </Section>
-
-      <Section>
-        <SectionTitle>Preço</SectionTitle>
-        <div className="max-w-2xl mx-auto bg-gray-50 p-8 rounded-lg">
-          <div className="space-y-4">
-            <div className="flex justify-between text-lg">
-              <span>Setup (único)</span>
-              <span className="text-2xl font-bold">R$ 1.200</span>
-            </div>
-            <div className="flex justify-between text-lg border-t pt-4">
-              <span>Mensalidade</span>
-              <span className="text-2xl font-bold">R$ 300/mês</span>
-            </div>
+        <Section alt>
+          <SectionTitle eyebrow="O problema" title="Todo dia a mesma corrida" />
+          <div className="grid gap-6 md:grid-cols-3">
+            <PainCard text="Pai com dúvida espera resposta e procura outra escola" />
+            <PainCard text="Visita agendada sem confirmação vira falta" />
+            <PainCard text="Secretaria sobrecarregada em época de matrícula" />
           </div>
-        </div>
-      </Section>
+        </Section>
 
-      <CTA 
-        title="Comece agora"
-        description="Mais alunos, mais receita"
-        buttonText="Começar Agora"
-        buttonLink="https://wa.me/5553991774147"
-      />
+        <Section>
+          <SectionTitle eyebrow="A solução" title="Um agente que atende como você" />
+          <div className="grid gap-6 sm:grid-cols-2">
+            <WinCard text="Agente explica valores e proposta pedagógica na hora" />
+            <WinCard text="Agenda visita direto no calendário da escola" />
+            <WinCard text="Confirmação + lembrete reduz falta na visita" />
+            <WinCard text="Acompanhamento pós-visita reduz desistência" />
+          </div>
+        </Section>
 
+        <Section alt>
+          <SectionTitle title="Como funciona" />
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <StepCard n={1} text="Pai manda mensagem perguntando sobre vaga" />
+            <StepCard n={2} text="IA explica proposta, valores e agenda a visita" />
+            <StepCard n={3} text="Confirmação automática + lembrete antes da visita" />
+            <StepCard n={4} text="Acompanhamento até a matrícula ser fechada" />
+          </div>
+        </Section>
+
+        <Section>
+          <SectionTitle
+            eyebrow="Funcionalidades incluídas"
+            title="O que vem junto com o seu agente"
+            subtitle="Os mesmos recursos que rodam por trás da plataforma ZapBook, aplicados ao dia a dia da escola."
+          />
+          <FeatureGrid features={featured} />
+        </Section>
+
+        <Section alt>
+          <SectionTitle title="Investimento" subtitle="Sem fidelidade. Cancele quando quiser." />
+          <PriceCard
+            highlight
+            setup="R$ 1.200"
+            monthly="R$ 300/mês"
+            includes={["Configuração completa", "Google Calendar integrado", "Suporte contínuo"]}
+          />
+        </Section>
+
+        <Section>
+          <SectionTitle eyebrow="Dúvidas comuns" title="Perguntas frequentes" />
+          <FaqSection items={escolaFaqs} />
+        </Section>
+
+        <Section alt>
+          <SectionTitle title="Pronto pra lotar as vagas da sua escola?" />
+          <CTA />
+        </Section>
+      </main>
       <Footer />
     </div>
   );
