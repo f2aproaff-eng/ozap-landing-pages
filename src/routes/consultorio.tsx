@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
-  ChatGif,
+  ChatSim,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -15,7 +15,7 @@ import {
   StepCard,
   WinCard,
 } from "@/components/site/sections";
-import { FAQS, FEATURES } from "@/components/site/data";
+import { CONSULTORIO_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
 const title = "Agendamento Automático com IA | ZapBook - Consultórios";
 const description =
@@ -73,12 +73,7 @@ function ConsultorioPage() {
           headline="Pare de Perder Agendamentos no WhatsApp"
           sub="Seu agente de IA responde 24/7. Pacientes agendam sozinhos, direto no seu Google Calendar."
           cta={<CTA helper="Resposta em minutos, sem compromisso." />}
-          visual={
-            <ChatGif
-              src="/gifs/consultorio-conversa.gif"
-              alt="Simulação de conversa: paciente agendando consulta com o agente de IA da ZapBook pelo WhatsApp"
-            />
-          }
+          visual={<ChatSim messages={CONSULTORIO_CHAT} />}
           stats={[
             { value: "2-3h/dia", label: "Tempo economizado" },
             { value: "24/7", label: "Resposta imediata" },

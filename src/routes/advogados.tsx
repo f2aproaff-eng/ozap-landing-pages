@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
-  ChatGif,
+  ChatSim,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -15,7 +15,7 @@ import {
   StepCard,
   WinCard,
 } from "@/components/site/sections";
-import { FAQS, FEATURES } from "@/components/site/data";
+import { ADVOGADOS_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
 const title = "Triagem Automática com IA | ZapBook - Advogados";
 const description =
@@ -73,12 +73,7 @@ function AdvogadosPage() {
           headline="Você Gasta 30min/dia em Triagem de Cliente"
           sub="Automatize a qualificação inicial de leads no WhatsApp. Foque em fechar, não em triar."
           cta={<CTA helper="Leads qualificados direto no seu e-mail." />}
-          visual={
-            <ChatGif
-              src="/gifs/advogados-conversa.gif"
-              alt="Simulação de conversa: cliente sendo triado pelo agente de IA da ZapBook no WhatsApp do escritório"
-            />
-          }
+          visual={<ChatSim messages={ADVOGADOS_CHAT} />}
           stats={[
             { value: "30min → 2min", label: "Tempo de triagem" },
             { value: "24/7", label: "Primeiro contato" },

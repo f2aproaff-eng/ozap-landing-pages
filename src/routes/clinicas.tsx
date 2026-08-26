@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
   Card,
-  ChatGif,
+  ChatSim,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -15,7 +15,7 @@ import {
   SectionTitle,
   WinCard,
 } from "@/components/site/sections";
-import { FAQS, FEATURES } from "@/components/site/data";
+import { CLINICAS_CHAT, FAQS, FEATURES } from "@/components/site/data";
 
 const title = "Agendamento Automático com IA | ZapBook - Clínicas";
 const description =
@@ -80,12 +80,7 @@ function ClinicasPage() {
           headline="Chega de Confusão em Agendamentos"
           sub="Múltiplos profissionais, múltiplas mensagens. Agora tudo organizado num único agente de IA."
           cta={<CTA helper="Veja o painel de agendamentos ao vivo." />}
-          visual={
-            <ChatGif
-              src="/gifs/clinicas-conversa.gif"
-              alt="Simulação de conversa: paciente agendando consulta odontológica com o agente de IA da ZapBook"
-            />
-          }
+          visual={<ChatSim messages={CLINICAS_CHAT} />}
           stats={[
             { value: "2+", label: "Profissionais organizados" },
             { value: "0", label: "Agendamentos duplicados" },

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -8,7 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { FaqItem } from "./data";
+import type { ChatMsg, FaqItem } from "./data";
 
 export function Section({
   children,
@@ -242,6 +242,117 @@ export function ChatGif({ src, alt }: { src: string; alt: string }) {
         </span>
       </div>
       <img src={src} alt={alt} className="w-full rounded-xl" loading="lazy" />
+    </div>
+  );
+}
+
+function renderBold(text: string) {
+  return text.split(/\*\*(.+?)\*\*/g).map((part, i) =>
+    i % 2 === 1 ? (
+      <strong key={i} className="font-semibold text-foreground">
+        {part}
+      </strong>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
+  );
+}
+
+/**
+ * Simulação de conversa animada, ritmo de "digitando..." — substitui os GIFs de
+ * print real. Mesmo texto das conversas capturadas no simulador do agente, mas
+ * como componente vivo: nítido, acessível, sem pipeline de vídeo/GIF pra manter.
+ */
+export function ChatSim({ messages }: { messages: ChatMsg[] }) {
+  const [visible, setVisible] = useState(0);
+  const [typing, setTyping] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
+
+    function step(i: number) {
+      if (cancelled) return;
+      if (i >= messages.length) {
+        timer = setTimeout(() => {
+          if (cancelled) return;
+          setVisible(0);
+          setTyping(false);
+          step(0);
+        }, 3800);
+        return;
+      }
+      setTyping(true);
+      const delay = Math.min(2200, Math.max(700, 450 + messages[i].text.length * 16));
+      timer = setTimeout(() => {
+        if (cancelled) return;
+        setTyping(false);
+        setVisible(i + 1);
+        timer = setTimeout(() => step(i + 1), 380);
+      }, delay);
+    }
+
+    step(0);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [messages]);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [visible, typing]);
+
+  const shown = messages.slice(0, visible);
+  const next = messages[visible];
+
+  return (
+    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
+      <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
+        <span className="flex items-center gap-1.5 font-mono text-[11px] tracking-[0.04em] text-brand">
+          <span className="size-1.5 animate-pulse rounded-full bg-brand" /> IA Ativa
+        </span>
+        <span className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
+          Desativar IA
+        </span>
+      </div>
+      <div ref={scrollRef} className="h-[340px] space-y-2 overflow-y-auto pr-1">
+        {shown.map((m, i) => (
+          <div key={i} className={m.from === "user" ? "flex justify-end" : "flex justify-start"}>
+            <div
+              className={
+                m.from === "user"
+                  ? "max-w-[85%] rounded-2xl rounded-br-sm bg-secondary px-3 py-2 text-sm text-secondary-foreground"
+                  : "max-w-[85%] rounded-2xl rounded-bl-sm border border-brand/30 bg-card px-3 py-2 text-sm text-foreground"
+              }
+            >
+              <p className="leading-relaxed">{renderBold(m.text)}</p>
+              <p className="mt-1 text-right font-mono text-[10px] text-muted-foreground/60">
+                {m.time}
+              </p>
+            </div>
+          </div>
+        ))}
+        {typing && next && (
+          <div className={next.from === "user" ? "flex justify-end" : "flex justify-start"}>
+            <div
+              className={
+                next.from === "user"
+                  ? "rounded-2xl rounded-br-sm bg-secondary px-3.5 py-3"
+                  : "rounded-2xl rounded-bl-sm border border-brand/30 bg-card px-3.5 py-3"
+              }
+            >
+              <span className="flex gap-1">
+                <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.3s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground [animation-delay:-0.15s]" />
+                <span className="size-1.5 animate-bounce rounded-full bg-muted-foreground" />
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
