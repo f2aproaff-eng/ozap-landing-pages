@@ -58,11 +58,31 @@ export function Card({ children }: { children: ReactNode }) {
   );
 }
 
+/** Caixa de ícone no mesmo padrão visual dos cards da home. */
+function IconBadge({
+  icon: Icon,
+  tone = "neutral",
+}: {
+  icon: LucideIcon;
+  tone?: "neutral" | "brand";
+}) {
+  return (
+    <div
+      className={cn(
+        "flex size-11 items-center justify-center rounded-xl bg-white/[0.06] transition-colors group-hover:bg-brand/10 group-hover:text-brand",
+        tone === "brand" ? "text-brand" : "text-foreground",
+      )}
+    >
+      <Icon className="size-5" />
+    </div>
+  );
+}
+
 export function PainCard({ text }: { text: string }) {
   return (
     <Card>
-      <span className="text-2xl">🔴</span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <IconBadge icon={AlertCircle} />
+      <p className="mt-4 font-medium text-card-foreground">{text}</p>
     </Card>
   );
 }
@@ -70,8 +90,8 @@ export function PainCard({ text }: { text: string }) {
 export function WinCard({ text }: { text: string }) {
   return (
     <Card>
-      <span className="text-2xl">✅</span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <IconBadge icon={Check} tone="brand" />
+      <p className="mt-4 font-medium text-card-foreground">{text}</p>
     </Card>
   );
 }
@@ -79,10 +99,10 @@ export function WinCard({ text }: { text: string }) {
 export function StepCard({ n, text }: { n: number; text: string }) {
   return (
     <Card>
-      <span className="inline-flex size-9 items-center justify-center rounded-full bg-secondary font-mono text-sm font-medium text-secondary-foreground">
-        {n}
-      </span>
-      <p className="mt-3 font-medium text-card-foreground">{text}</p>
+      <div className="flex size-11 items-center justify-center rounded-xl bg-white/[0.06] font-mono text-sm font-medium text-foreground transition-colors group-hover:bg-brand/10 group-hover:text-brand">
+        {String(n).padStart(2, "0")}
+      </div>
+      <p className="mt-4 font-medium text-card-foreground">{text}</p>
     </Card>
   );
 }
