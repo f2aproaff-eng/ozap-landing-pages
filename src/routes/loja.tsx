@@ -166,9 +166,9 @@ function LojaPage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { name: 'Startup', setup: 'R$ 1.500', monthly: 'R$ 300' },
-              { name: 'Crescimento', setup: 'R$ 2.000', monthly: 'R$ 400', best: true },
-              { name: 'Premium', setup: 'R$ 2.500', monthly: 'R$ 500' },
+              { name: 'Startup', setup: 'R$ 1.200', monthly: 'R$ 300' },
+              { name: 'Crescimento', setup: 'R$ 1.200', monthly: 'R$ 300', best: true },
+              { name: 'Premium', setup: 'R$ 1.200', monthly: 'R$ 300' },
             ].map((plan, i) => (
               <div key={i} className={`rounded-2xl p-8 border transition-all ${plan.best ? 'border-emerald-500 bg-gradient-to-b from-emerald-50 to-white shadow-xl scale-105' : 'border-gray-200 bg-white'}`}>
                 {plan.best && <div className="text-sm font-semibold text-emerald-600 uppercase mb-4">Mais Popular</div>}
