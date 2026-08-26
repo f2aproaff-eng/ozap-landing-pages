@@ -129,8 +129,8 @@ function ConsultorioPage() {
           <SectionTitle title="Investimento" subtitle="Sem fidelidade. Cancele quando quiser." />
           <PriceCard
             highlight
-            setup="R$ 2.000"
-            monthly="R$ 400/mês"
+            setup="R$ 1.200"
+            monthly="R$ 300/mês"
             includes={["Configuração completa", "Google Calendar integrado", "Suporte contínuo"]}
             note="*Redução de faltas estimada com lembrete automático 24h antes da consulta."
           />

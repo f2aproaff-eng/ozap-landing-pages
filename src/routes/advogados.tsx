@@ -138,8 +138,8 @@ function AdvogadosPage() {
           <SectionTitle title="Investimento" />
           <PriceCard
             highlight
-            setup="R$ 3.000"
-            monthly="R$ 500/mês"
+            setup="R$ 1.200"
+            monthly="R$ 300/mês"
             includes={[
               "Triagem automática de leads",
               "Integração com Gmail",
