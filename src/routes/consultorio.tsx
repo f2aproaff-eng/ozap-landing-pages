@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
-  ChatDemo,
+  ChatGif,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -74,13 +74,9 @@ function ConsultorioPage() {
           sub="Seu agente de IA responde 24/7. Pacientes agendam sozinhos, direto no seu Google Calendar."
           cta={<CTA helper="Resposta em minutos, sem compromisso." />}
           visual={
-            <ChatDemo
-              messages={[
-                { from: "user", text: "Oi, tem horário essa semana?" },
-                { from: "ai", text: "Olá! Tenho quinta às 14h ou sexta às 9h. Qual prefere?" },
-                { from: "user", text: "Quinta 14h" },
-                { from: "ai", text: "Agendado ✅ Enviei a confirmação e lembro você 24h antes." },
-              ]}
+            <ChatGif
+              src="/gifs/consultorio-conversa.gif"
+              alt="Simulação de conversa: paciente agendando consulta com o agente de IA da ZapBook pelo WhatsApp"
             />
           }
           stats={[
@@ -133,7 +129,7 @@ function ConsultorioPage() {
           <SectionTitle title="Investimento" subtitle="Sem fidelidade. Cancele quando quiser." />
           <PriceCard
             highlight
-            setup="R$ 1.200"
+            setup="R$ 2.000"
             monthly="R$ 400/mês"
             includes={["Configuração completa", "Google Calendar integrado", "Suporte contínuo"]}
             note="*Redução de faltas estimada com lembrete automático 24h antes da consulta."

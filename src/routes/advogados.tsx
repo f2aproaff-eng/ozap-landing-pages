@@ -4,7 +4,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { CTA } from "@/components/site/CTA";
 import {
-  ChatDemo,
+  ChatGif,
   FaqSection,
   FeatureGrid,
   Hero,
@@ -74,13 +74,9 @@ function AdvogadosPage() {
           sub="Automatize a qualificação inicial de leads no WhatsApp. Foque em fechar, não em triar."
           cta={<CTA helper="Leads qualificados direto no seu e-mail." />}
           visual={
-            <ChatDemo
-              messages={[
-                { from: "user", text: "Preciso de ajuda com divórcio" },
-                { from: "ai", text: "Entendi. É consensual? Qual a urgência?" },
-                { from: "user", text: "Consensual, urgência média" },
-                { from: "ai", text: "Resumo enviado ao escritório ✅ Retornam em até 4h." },
-              ]}
+            <ChatGif
+              src="/gifs/advogados-conversa.gif"
+              alt="Simulação de conversa: cliente sendo triado pelo agente de IA da ZapBook no WhatsApp do escritório"
             />
           }
           stats={[
@@ -142,8 +138,8 @@ function AdvogadosPage() {
           <SectionTitle title="Investimento" />
           <PriceCard
             highlight
-            setup="R$ 1.200"
-            monthly="R$ 400/mês"
+            setup="R$ 3.000"
+            monthly="R$ 500/mês"
             includes={[
               "Triagem automática de leads",
               "Integração com Gmail",

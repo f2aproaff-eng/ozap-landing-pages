@@ -222,6 +222,20 @@ export function ChatDemo({ messages }: { messages: { from: "user" | "ai"; text: 
   );
 }
 
+export function ChatGif({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="mx-auto w-full max-w-sm rounded-2xl border border-border bg-card p-4 shadow-2xl shadow-black/40">
+      <div className="mb-3 flex items-center justify-between border-b border-border pb-2">
+        <p className="text-xs font-semibold text-muted-foreground">WhatsApp · Agente ZapBook</p>
+        <span className="flex items-center gap-1 text-[10px] font-semibold text-success">
+          <span className="size-1.5 rounded-full bg-success" /> online
+        </span>
+      </div>
+      <img src={src} alt={alt} className="w-full rounded-xl" loading="lazy" />
+    </div>
+  );
+}
+
 export function StatRow({ stats }: { stats: { value: string; label: string }[] }) {
   return (
     <div className="relative border-t border-border/60 bg-card/40">
