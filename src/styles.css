@@ -114,6 +114,8 @@
   --sidebar-ring: var(--ring);
   --hero-ink: oklch(1 0 0);
   --hero-muted: oklch(0.93 0.012 164);
+  --hero-button: oklch(1 0 0);
+  --hero-button-ink: oklch(0.29 0.055 167);
   --hero-overlay: linear-gradient(90deg, oklch(0.2 0.035 167 / 88%) 0%, oklch(0.2 0.035 167 / 75%) 38%, oklch(0.2 0.035 167 / 8%) 75%);
   --shadow-card: 0 8px 30px oklch(0.3 0.03 165 / 5%);
   --shadow-chat: 0 16px 48px oklch(0.25 0.03 165 / 12%);
@@ -171,7 +173,7 @@
 .hero-copy { color: var(--hero-ink); }
 .hero-copy .hero-sub, .hero-copy .cta-helper { color: var(--hero-muted); }
 .hero-copy .site-cta { align-items: flex-start; }
-.hero-copy .site-cta a { background: var(--background); color: var(--brand-deep); }
+.hero-copy .site-cta a { background: var(--hero-button); color: var(--hero-button-ink); }
 .hero-copy .site-cta a:hover { background: var(--brand-soft); }
 .hero-eyebrow { color: var(--hero-muted); }
 .hero-stats { background: var(--background); }

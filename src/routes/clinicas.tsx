@@ -70,7 +70,7 @@ const clinicasFaqs = [
   ),
 ];
 
-function ClinicasPage() {
+export function ClinicasPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

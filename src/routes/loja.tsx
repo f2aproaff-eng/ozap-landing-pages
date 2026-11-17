@@ -63,7 +63,7 @@ const lojaFaqs = [
   ),
 ];
 
-function LojaPage() {
+export function LojaPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

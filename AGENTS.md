@@ -11,3 +11,4 @@
 
 - Keep segment-page presentation in the shared site components and semantic CSS tokens so visual changes stay consistent across segments.
 - Import hero photography as bundled assets and pass segment-specific images through Hero props so images render during SSR without browser-only selection.
+- Legacy premium URLs render their canonical segment page component with their own metadata so design and contact controls cannot drift.
