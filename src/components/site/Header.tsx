@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu, MessageCircle, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import { WHATSAPP_DEMO } from "./data";
 
@@ -24,33 +25,36 @@ export function Header() {
   const [segOpen, setSegOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link to="/" className="font-serif text-2xl italic tracking-tight text-foreground">
-          Zap<span className="text-brand">Pulse</span>
+    <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+        <Link to="/" className="flex items-center gap-2 text-2xl font-bold text-foreground" aria-label="ZapPulse — início">
+          <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground"><MessageCircle className="size-5" /></span>
+          <span>Zap<span className="text-brand">Pulse</span></span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
           <div
             className="relative"
-            onMouseEnter={() => setSegOpen(true)}
-            onMouseLeave={() => setSegOpen(false)}
           >
-            <button
+            <Button
               type="button"
-              className="flex items-center gap-1 rounded-full px-3 py-2 font-mono text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:bg-brand-soft hover:text-foreground"
+              variant="ghost"
+              className="gap-1 text-sm text-muted-foreground"
+              onClick={() => setSegOpen((v) => !v)}
               aria-expanded={segOpen}
+              aria-controls="segment-menu"
             >
               Segmentos
               <ChevronDown className="size-3.5" />
-            </button>
+            </Button>
             {segOpen && (
-              <div className="absolute left-1/2 top-full grid w-[440px] -translate-x-1/2 grid-cols-2 gap-1 rounded-2xl border border-border bg-card p-3 shadow-[0_0_0_1px_rgba(0,0,0,0.5)]">
+              <div id="segment-menu" className="site-menu absolute left-1/2 top-full grid w-[400px] -translate-x-1/2 grid-cols-2 gap-1 rounded-lg border border-border bg-card p-3">
                 {segments.map((item) => (
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="rounded-xl px-3 py-2 font-mono text-xs tracking-[0.02em] text-muted-foreground transition-colors hover:bg-brand-soft hover:text-foreground"
+                    onClick={() => setSegOpen(false)}
+                    className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-brand-soft hover:text-foreground"
                     activeProps={{ className: "bg-brand-soft text-foreground" }}
                   >
                     {item.label}
@@ -62,22 +66,26 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Button asChild className="hidden h-10 sm:inline-flex">
           <a
             href={WHATSAPP_DEMO}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-primary px-4 py-2 font-mono text-xs font-medium tracking-[0.02em] text-primary-foreground transition-transform hover:-translate-y-0.5 sm:inline-flex"
           >
-            Ver Demo
+            Ver Demo <ArrowUpRight aria-hidden />
           </a>
-          <button
+          </Button>
+          <Button
             type="button"
-            aria-label="Abrir menu"
+            variant="ghost"
+            size="icon"
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-full p-2 text-foreground md:hidden"
+            className="text-foreground md:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -92,20 +100,21 @@ export function Header() {
                 key={item.to}
                 to={item.to}
                 onClick={() => setOpen(false)}
-                className="block rounded-full px-3 py-2 font-mono text-xs tracking-[0.02em] text-muted-foreground hover:bg-brand-soft hover:text-foreground"
+                className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-brand-soft hover:text-foreground"
               >
                 {item.label}
               </Link>
             ))}
           </div>
+          <Button asChild className="mt-3 w-full">
           <a
             href={WHATSAPP_DEMO}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-2 block rounded-full bg-primary px-3 py-2 text-center font-mono text-xs font-medium tracking-[0.02em] text-primary-foreground"
           >
             Ver Demo
           </a>
+          </Button>
         </nav>
       )}
     </header>

@@ -15,12 +15,14 @@ import { Route as AdvogadosRouteImport } from './routes/advogados'
 import { Route as BarbeariaRouteImport } from './routes/barbearia'
 import { Route as CafeteriaRouteImport } from './routes/cafeteria'
 import { Route as ClinicasRouteImport } from './routes/clinicas'
+import { Route as ClinicasPremiumRouteImport } from './routes/clinicas-premium'
 import { Route as ConsultorioRouteImport } from './routes/consultorio'
 import { Route as DesignRouteImport } from './routes/design'
 import { Route as EcommerceRouteImport } from './routes/ecommerce'
 import { Route as EscolaRouteImport } from './routes/escola'
 import { Route as ImobiliariaRouteImport } from './routes/imobiliaria'
 import { Route as LojaRouteImport } from './routes/loja'
+import { Route as LojaPremiumRouteImport } from './routes/loja-premium'
 import { Route as RestauranteRouteImport } from './routes/restaurante'
 
 const IndexRoute = IndexRouteImport.update({
@@ -53,6 +55,11 @@ const ClinicasRoute = ClinicasRouteImport.update({
   path: '/clinicas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClinicasPremiumRoute = ClinicasPremiumRouteImport.update({
+  id: '/clinicas-premium',
+  path: '/clinicas-premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConsultorioRoute = ConsultorioRouteImport.update({
   id: '/consultorio',
   path: '/consultorio',
@@ -83,6 +90,11 @@ const LojaRoute = LojaRouteImport.update({
   path: '/loja',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LojaPremiumRoute = LojaPremiumRouteImport.update({
+  id: '/loja-premium',
+  path: '/loja-premium',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RestauranteRoute = RestauranteRouteImport.update({
   id: '/restaurante',
   path: '/restaurante',
@@ -96,12 +108,14 @@ export interface FileRoutesByFullPath {
   '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
+  '/clinicas-premium': typeof ClinicasPremiumRoute
   '/consultorio': typeof ConsultorioRoute
   '/design': typeof DesignRoute
   '/ecommerce': typeof EcommerceRoute
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/loja-premium': typeof LojaPremiumRoute
   '/restaurante': typeof RestauranteRoute
 }
 export interface FileRoutesByTo {
@@ -111,12 +125,14 @@ export interface FileRoutesByTo {
   '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
+  '/clinicas-premium': typeof ClinicasPremiumRoute
   '/consultorio': typeof ConsultorioRoute
   '/design': typeof DesignRoute
   '/ecommerce': typeof EcommerceRoute
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/loja-premium': typeof LojaPremiumRoute
   '/restaurante': typeof RestauranteRoute
 }
 export interface FileRoutesById {
@@ -127,12 +143,14 @@ export interface FileRoutesById {
   '/barbearia': typeof BarbeariaRoute
   '/cafeteria': typeof CafeteriaRoute
   '/clinicas': typeof ClinicasRoute
+  '/clinicas-premium': typeof ClinicasPremiumRoute
   '/consultorio': typeof ConsultorioRoute
   '/design': typeof DesignRoute
   '/ecommerce': typeof EcommerceRoute
   '/escola': typeof EscolaRoute
   '/imobiliaria': typeof ImobiliariaRoute
   '/loja': typeof LojaRoute
+  '/loja-premium': typeof LojaPremiumRoute
   '/restaurante': typeof RestauranteRoute
 }
 export interface FileRouteTypes {
@@ -144,12 +162,14 @@ export interface FileRouteTypes {
     | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
+    | '/clinicas-premium'
     | '/consultorio'
     | '/design'
     | '/ecommerce'
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/loja-premium'
     | '/restaurante'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -159,12 +179,14 @@ export interface FileRouteTypes {
     | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
+    | '/clinicas-premium'
     | '/consultorio'
     | '/design'
     | '/ecommerce'
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/loja-premium'
     | '/restaurante'
   id:
     | '__root__'
@@ -174,12 +196,14 @@ export interface FileRouteTypes {
     | '/barbearia'
     | '/cafeteria'
     | '/clinicas'
+    | '/clinicas-premium'
     | '/consultorio'
     | '/design'
     | '/ecommerce'
     | '/escola'
     | '/imobiliaria'
     | '/loja'
+    | '/loja-premium'
     | '/restaurante'
   fileRoutesById: FileRoutesById
 }
@@ -190,12 +214,14 @@ export interface RootRouteChildren {
   BarbeariaRoute: typeof BarbeariaRoute
   CafeteriaRoute: typeof CafeteriaRoute
   ClinicasRoute: typeof ClinicasRoute
+  ClinicasPremiumRoute: typeof ClinicasPremiumRoute
   ConsultorioRoute: typeof ConsultorioRoute
   DesignRoute: typeof DesignRoute
   EcommerceRoute: typeof EcommerceRoute
   EscolaRoute: typeof EscolaRoute
   ImobiliariaRoute: typeof ImobiliariaRoute
   LojaRoute: typeof LojaRoute
+  LojaPremiumRoute: typeof LojaPremiumRoute
   RestauranteRoute: typeof RestauranteRoute
 }
 
@@ -243,6 +269,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClinicasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clinicas-premium': {
+      id: '/clinicas-premium'
+      path: '/clinicas-premium'
+      fullPath: '/clinicas-premium'
+      preLoaderRoute: typeof ClinicasPremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/consultorio': {
       id: '/consultorio'
       path: '/consultorio'
@@ -285,6 +318,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LojaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/loja-premium': {
+      id: '/loja-premium'
+      path: '/loja-premium'
+      fullPath: '/loja-premium'
+      preLoaderRoute: typeof LojaPremiumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/restaurante': {
       id: '/restaurante'
       path: '/restaurante'
@@ -302,12 +342,14 @@ const rootRouteChildren: RootRouteChildren = {
   BarbeariaRoute: BarbeariaRoute,
   CafeteriaRoute: CafeteriaRoute,
   ClinicasRoute: ClinicasRoute,
+  ClinicasPremiumRoute: ClinicasPremiumRoute,
   ConsultorioRoute: ConsultorioRoute,
   DesignRoute: DesignRoute,
   EcommerceRoute: EcommerceRoute,
   EscolaRoute: EscolaRoute,
   ImobiliariaRoute: ImobiliariaRoute,
   LojaRoute: LojaRoute,
+  LojaPremiumRoute: LojaPremiumRoute,
   RestauranteRoute: RestauranteRoute,
 }
 export const routeTree = rootRouteImport

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight, Building2, Coffee, Dumbbell, GraduationCap, House, Palette, Scissors, ShoppingBag, ShoppingCart, Stethoscope, Scale, Utensils } from "lucide-react";
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -107,6 +108,8 @@ const niches = [
   },
 ];
 
+const nicheIcons = [Stethoscope, Building2, Scale, Dumbbell, Coffee, Palette, ShoppingCart, GraduationCap, House, ShoppingBag, Scissors, Utensils];
+
 function Index() {
   return (
     <div className="flex min-h-screen flex-col">
@@ -130,23 +133,25 @@ function Index() {
           <SectionTitle
             eyebrow="Escolha seu segmento"
             title="Feito sob medida para o seu negócio"
-            subtitle="Cada página abaixo mostra exatamente como o agente se comporta no seu tipo de atendimento."
+            subtitle="Atendimento inteligente que acompanha a rotina de quem empreende."
           />
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {niches.map((n) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {niches.map((n, i) => {
+              const Icon = nicheIcons[i] ?? Building2;
+              return (
               <Link
                 key={n.to}
                 to={n.to}
-                className="group rounded-2xl border border-border bg-card p-6 shadow-[0_0_0_1px_rgba(0,0,0,0.4)] transition-all hover:-translate-y-1 hover:border-brand/30"
+                className="niche-card group rounded-lg border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-brand/40"
               >
-                <h2 className="font-serif text-xl italic text-foreground">{n.label}</h2>
+                <div className="mb-5 flex items-center justify-between"><span className="flex size-10 items-center justify-center rounded-lg bg-brand-soft text-brand"><Icon className="size-5" /></span><ArrowUpRight className="size-5 text-muted-foreground transition-colors group-hover:text-brand" /></div>
+                <h2 className="text-lg font-bold text-foreground">{n.label}</h2>
                 <p className="mt-3 text-sm text-muted-foreground">{n.text}</p>
-                <p className="mt-4 font-mono text-xs tracking-[0.04em] text-muted-foreground">
+                <p className="mt-5 border-t border-border pt-4 text-xs font-semibold text-brand">
                   {n.price}
                 </p>
-                <p className="mt-2 font-mono text-xs tracking-[0.04em] text-brand">Ver página →</p>
               </Link>
-            ))}
+            ); })}
           </div>
         </Section>
 

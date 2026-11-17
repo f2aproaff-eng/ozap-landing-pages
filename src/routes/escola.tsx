@@ -16,6 +16,7 @@ import {
   WinCard,
 } from "@/components/site/sections";
 import { ESCOLA_CHAT, FAQS, FEATURES } from "@/components/site/data";
+import escolaImage from "@/assets/escola-recepcao.jpg";
 
 const title = "Escola com Matrícula Automática | ZapPulse";
 const description =
@@ -29,6 +30,7 @@ export const Route = createFileRoute("/escola")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: EscolaPage,
@@ -68,6 +70,8 @@ function EscolaPage() {
       <Header />
       <main className="flex-1">
         <Hero
+          image={escolaImage}
+          imageAlt="Atendimento de uma família na recepção de uma escola"
           eyebrow="Para escolas e cursos"
           headline="Pare de Perder Matrícula por Demora no WhatsApp"
           sub="Seu agente de IA responde dúvida de pai, agenda visita e reduz desistência."

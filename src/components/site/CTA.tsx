@@ -1,4 +1,6 @@
 import { WHATSAPP_CTA } from "./data";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function CTA({
   label = "Agendar Demo Agora",
@@ -16,19 +18,21 @@ export function CTA({
   buttonLink?: string;
 }) {
   return (
-    <div className="flex flex-col items-center gap-3 px-4 py-12">
+    <div className="site-cta flex flex-col items-center gap-3 py-5">
       {title && <h2 className="font-serif text-3xl italic text-foreground sm:text-4xl">{title}</h2>}
       {description && <p className="text-muted-foreground">{description}</p>}
+      <Button asChild size="lg" className="h-12 rounded-lg px-6 text-sm font-semibold">
       <a
         href={buttonLink ?? WHATSAPP_CTA}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 font-mono text-sm font-medium tracking-[0.02em] text-primary-foreground transition-transform hover:-translate-y-0.5"
       >
         {buttonText ?? label}
+        <ArrowUpRight aria-hidden className="size-4" />
       </a>
+      </Button>
       {helper && (
-        <p className="font-mono text-xs tracking-[0.02em] text-muted-foreground">{helper}</p>
+        <p className="cta-helper text-xs text-muted-foreground">{helper}</p>
       )}
     </div>
   );

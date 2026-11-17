@@ -8,19 +8,19 @@ export function Footer() {
     <footer className="border-t border-border bg-surface-alt">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3">
         <div>
-          <p className="font-serif text-xl italic text-foreground">
+          <p className="text-xl font-bold text-foreground">
             Zap<span className="text-brand">Pulse</span>
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Agendamento e triagem automáticos com IA no WhatsApp.
           </p>
-          <p className="mt-4 font-mono text-xs tracking-[0.02em] text-muted-foreground">
+          <p className="mt-4 text-xs text-muted-foreground">
             © 2026 ZapPulse
           </p>
         </div>
 
         <div className="text-sm">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+          <p className="text-xs font-bold uppercase text-muted-foreground">
             Páginas
           </p>
           <ul className="mt-3 space-y-2 text-foreground">
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div className="text-sm">
-          <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground">
+          <p className="text-xs font-bold uppercase text-muted-foreground">
             Contato & legal
           </p>
           <ul className="mt-3 space-y-2 text-foreground">
